@@ -122,7 +122,7 @@ int main(int argc, char *argv[])
     for (i=0; i<5; i++){
         cout << "Enter number: ";
         cin >> number;
-        result=result + abs(number);
+        result=result + abs((double)number);
     }
 
     cout << "\n" << result/i << "<--- result\n";
