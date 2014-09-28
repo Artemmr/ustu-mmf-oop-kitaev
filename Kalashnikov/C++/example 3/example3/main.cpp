@@ -6,13 +6,14 @@ using namespace std;
 
 int main()
 {
+
     int magic;
     int guess;
 
     magic = rand();
 
     cout << "Enter number: ";
-    cin >> guess;
+    guess = 20;
 
     if (guess == magic)
         cout << "** Yep **\n";
@@ -28,9 +29,9 @@ int main()
     int b;
 
     cout << "So, a / b \nPls, enter number a: ";
-    cin >> a;
+    a = 3;
     cout << "Pls, enter number b: ";
-    cin >> b;
+    a = 2;
 
     if (b)
         cout << (((double) a) / ((double) b));
@@ -40,7 +41,7 @@ int main()
     int num;
 
     cout << "\ncenter one or two or three : ";
-    cin >> num;
+    num = 2;
 
     switch (num) {
         case 1:
@@ -63,7 +64,7 @@ int main()
     cout << "2. switch\n";
     cout << "Enter number: ";
 
-    cin >> choice;
+    choice = 2;
 
     switch (choice) {
         case 1:
@@ -81,9 +82,8 @@ int main()
     for (i = 50; i >= -50; i = i -10) cout << i << ' ';
     cout << "\n";
 
-    /*for (int count = 10; cout < 5; count++)
-            cout << count;
-    */
+    //for (int count = 10; cout < 5; count++)
+    //        cout << count;
 
     int x,y;
 
@@ -119,6 +119,92 @@ int main()
     cout << "Summ: " << sum << "\n";
     cout << "Fact: " << fact << "\n";
     cout << "i " << i << "\n";
+
+    // while () {}; // () == true
+
+    unsigned char ch;
+
+    ch = 32;
+
+    while (ch) {
+        cout << ch;
+        ch++;
+    }
+
+    cout << "\n\nEnter number (1-79): ";
+    choice = 40;
+
+    cout << "\n";
+
+    while (choice>0 && choice <80){
+        cout << ".";
+        choice--;
+    }
+
+    /*
+     * do {
+     *     intsruction
+     * } while ();
+     *
+     *
+     * */
+
+    do {
+        cout << "\nEnter number (100 for exit): " << "100";
+        num = 100;
+        cout << "\n";
+    } while (num !=100);
+
+    magic = rand();
+
+    do {
+        cout << "\nEnter you'r number, pls: ";
+        guess = magic;
+
+        if (guess == magic) {
+            cout << "\n** Great **\n";
+            cout << "+++++++++++++++Mission complete\n";
+            cout << "** Great **\n";
+        }
+
+        else if (guess < magic)
+            cout << "number < magic number";
+
+        else if (guess > magic)
+            cout << "number > magic number";
+
+    } while (guess != magic);
+
+    for (int t = 0; t<100; t++) {
+        if (t == 10)
+            break;
+        cout << t << ' ';
+    }
+
+    int count;
+
+    cout << "\n\n";
+
+    for (int t = 0; t < 10; t++) {
+        count = 1;
+        for (;;){
+            cout << count << ' ';
+            count++;
+            if (count == 10)
+                break;
+        }
+        cout << "\n";
+    }
+
+    cout << "\n";
+
+    for (x=0; x <= 100; x++) {
+        if (x%2) continue;
+
+        cout << x << ' ';
+    }
+
+
 
     return 0;
 }
