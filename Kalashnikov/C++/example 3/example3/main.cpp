@@ -31,7 +31,7 @@ int main()
     cout << "So, a / b \nPls, enter number a: ";
     a = 3;
     cout << "Pls, enter number b: ";
-    a = 2;
+    b = 2;
 
     if (b)
         cout << (((double) a) / ((double) b));
@@ -204,7 +204,128 @@ int main()
         cout << x << ' ';
     }
 
+    for (int i = 2; i <= 100; i++){
+        cout << "multipliers " << i << " :";
 
+        for (int j = 2; j < i; j++){
+            if (!(i%j))
+                cout << j << " ";
+        }
+
+        cout << "\n";
+    }
+
+    cout << "\n";
+
+    unsigned int points = 0;
+
+    char symbol = '$';
+
+    do {
+        cout << "Pls, enter symbol: ";
+        //cin >> symbol;
+
+        if (symbol == '.')
+            points++;
+
+    } while (symbol != '$');
+
+
+    cout << "Points : " << points << "\n\n";
+
+    points = 0;
+    symbol = '$';
+
+    for (; symbol != '$';){ //cin >> symbol){
+
+        cout << "Pls, enter symbol: ";
+        if (symbol == '.')
+            points++;
+    }
+
+    cout << "Points : " << points << "\n\n";
+
+    symbol = '$';
+    points = 0;
+
+    while (symbol != '$'){
+        cout << "Pls, enter symbol: ";
+        //cin >> symbol;
+
+        if (symbol == '.')
+            points++;
+    }
+
+    cout << "Points : " << points << "\n\n";
+
+    cout << "Numbers : ";
+
+    for (i = 1000; i >= 0; i -= 2)
+
+        cout << i << " ";
+
+    cout << "\n\n";
+
+    for (int i =0; i < 10; i++){
+        cout << i << " ";
+        if (!(i%2)) continue;
+        cout << "\n";
+    }
+
+    cout << "\n\n";
+
+    cout << "1 2 ";
+
+    for (int i=2; i<1000; i *= 2, cout << i << " " );
+
+    cout << "\n\n";
+
+    for (int i=65 ; i <= (65+25); i++) {
+        cout << i << " is " << (symbol = (char) i) << "    " << i+32 << " is " << (symbol = (char) (i+32)) <<  "\n";
+    }
+
+    cout << "\n\n";
+
+    do {
+        cin >> symbol;
+
+        if ((symbol>=65)&&(symbol<=90)){
+            symbol += 32;
+            cout << symbol;
+            continue;
+        }
+
+        else if ((symbol>=97)&&(symbol<=122)){
+            symbol -= 32;
+            cout << symbol;
+            continue;
+        }
+
+        else cout << symbol;
+        
+    } while (symbol != '.');
+
+    cout << "\n\n";
+
+    symbol = 0;
+
+    while (symbol != '.') {
+        cin >> symbol;
+
+        if ((symbol>=65)&&(symbol<=90)){
+            symbol += 32;
+            cout << symbol;
+            continue;
+        }
+
+        else if ((symbol>=97)&&(symbol<=122)){
+            symbol -= 32;
+            cout << symbol;
+            continue;
+        }
+
+        else cout << symbol;
+    }
 
     return 0;
 }
