@@ -13,6 +13,9 @@ signals:
 
 public slots:
 
+protected:
+    virtual void paintEvent (QPaintEvent *iEvent);
+
 };
 
 #endif // PAINTOUTPUT_H

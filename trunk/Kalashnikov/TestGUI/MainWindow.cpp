@@ -1,4 +1,4 @@
-#include "MainWindow.h"
+#include <MainWindow.h>
 #include <QHBoxLayout> // диспетчер горизонталь
 #include <QVBoxLayout> // диспетчер вертикаль
 #include <QPushButton>
@@ -10,14 +10,14 @@ MainWindow::MainWindow(QWidget *iParent):
 {
     QWidget *parent = this;
 
-    QHBoxLayout *hblayout = new QHBoxLayout(this); // this - тип main windows *
+    QHBoxLayout *hblayout = new QHBoxLayout(parent); // this - тип main windows *
     QPushButton *bt0, *bt1;
 
-    QWidget *topWidget = new QWidget(parent);
+    QWidget *leftWidget = new QWidget(parent);
 
-    hblayout->addWidget(topWidget);
+    hblayout->addWidget(leftWidget);
     {
-        QWidget *parent = topWidget;
+        QWidget *parent = leftWidget;
         QVBoxLayout *vlay = new QVBoxLayout (parent);
         vlay->addWidget(new QPushButton("Button 2", parent));
         vlay->addWidget(new QPushButton("Button 3", parent));
@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *iParent):
 
     hblayout->addWidget(bt0 = new QPushButton("Кнопка 0", this));
     hblayout->addWidget(bt1 = new QPushButton("Кнопка 1", this));
-    hblayout->addWidget();
+    hblayout->addWidget(new PaintOutput(parent));
 
     connect(bt0, SIGNAL(clicked()), this, SLOT(button0Click())); //отправитель, какой сигнал, куда
 }
