@@ -4,15 +4,17 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui widgets
 
 TARGET = TestGUI
 TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        MainWindow.cpp
+        MainWindow.cpp \
+    paintoutput.cpp
 
-HEADERS  += MainWindow.h
+HEADERS  += MainWindow.h \
+    paintoutput.h
 
 FORMS    +=
