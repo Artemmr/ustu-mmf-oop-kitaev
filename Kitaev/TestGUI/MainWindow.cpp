@@ -3,6 +3,8 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 
+#include "PaintOutput.h"
+
 MainWindow::MainWindow(QWidget *iParent):
     QWidget(iParent)
 {
@@ -19,6 +21,7 @@ MainWindow::MainWindow(QWidget *iParent):
     }
     hblayout->addWidget(bt0 = new QPushButton("Button 0", parent));
     hblayout->addWidget(bt1 = new QPushButton("Button 1", parent));
+    hblayout->addWidget(new PaintOutput(parent));
 
     connect(bt0, SIGNAL(clicked()), this, SLOT(button0Click()));
 }

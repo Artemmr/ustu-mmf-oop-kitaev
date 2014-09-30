@@ -11,8 +11,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        MainWindow.cpp
+        MainWindow.cpp \
+    PaintOutput.cpp
 
-HEADERS  += MainWindow.h
+HEADERS  += MainWindow.h \
+    PaintOutput.h
 
 FORMS    +=
