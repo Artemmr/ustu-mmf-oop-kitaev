@@ -10,6 +10,12 @@ class MainWindow : public QWidget
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+public slots:
+    void button0Click();
+
 };
+
+
 
 #endif // MAINWINDOW_H
