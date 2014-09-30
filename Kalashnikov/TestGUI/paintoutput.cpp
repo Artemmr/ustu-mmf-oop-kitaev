@@ -4,7 +4,10 @@
 PaintOutput::PaintOutput(QWidget *parent) :
     QWidget(parent)
 {
-    QPainter painter (this);
-    painter.setPen(_funcColor);
+}
+
+void PaintOutput::paintEvent(QPaintEvent *iEvent){
+    QPainter painter(this);
+    painter.setPen(Qt::black);
     painter.drawLine(0, 0, 100, 100);
 }
