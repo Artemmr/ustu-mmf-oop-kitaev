@@ -108,12 +108,10 @@ int main(){
     cout << "\n\n";
 
     char rome[90];
-    int q = 1;
 
-    cout << "pls, enter txt: ";
+    cout << "\npls, enter txt: ";
 
-    if (q = 1)
-        gets(rome);
+    gets(rome);
 
 
     cout << "U string: ";
