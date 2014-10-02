@@ -2,6 +2,8 @@
 #include <cstdlib>
 #include <cmath>
 #include <cstdio>
+#include <cstring>
+#include <cctype>
 
 using namespace std;
 
@@ -96,7 +98,7 @@ int main(){
         cout << nums1[t1] << "  ";
 
     cout << "\n\n";
-
+/*
     char str[80];
 
     cout << "Enter string: ";
@@ -106,7 +108,7 @@ int main(){
     cout << str;
 
     cout << "\n\n";
-
+*/
     char rome[90];
 
     cout << "\npls, enter txt: ";
@@ -116,6 +118,43 @@ int main(){
 
     cout << "U string: ";
     cout << rome;
+
+    cout << "\n\n";
+
+    char s1[80], s2[80];
+
+    strcpy(s1, "C++");
+    strcpy(s2, " be cool");
+
+    cout << "Length string: " << strlen(s1);
+    cout << " " << strlen(s2) << "\n";
+
+    if (!strcmp(s1,s2))
+        cout << "good";
+    else
+        cout << "bad";
+
+    cout << "\n";
+
+    strcat(s1,s2);
+    cout << s1 << "\n";
+
+    strcpy(s2,s1);
+    cout << s1 << " and " << s2 << "\n";
+
+    if (!strcmp(s1,s2))
+        cout << "s1 == s2\n";
+
+    char str[80];
+
+    int i;
+
+    strcpy(str, "aFFFf");
+
+    for (i=0; str[i]; i++)
+        str[i] = tolower(str[i]);
+
+    cout << str << "\n";
 
     return 0;
 }
