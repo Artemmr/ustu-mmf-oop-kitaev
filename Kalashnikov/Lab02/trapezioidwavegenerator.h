@@ -1,12 +1,14 @@
 #ifndef TRAPEZIOIDWAVEGENERATOR_H
 #define TRAPEZIOIDWAVEGENERATOR_H
-//генератора трапецеидального сигнала
-class TrapezioidWaveGenerator : public SignalGenerator
-{
+
+class trapezioidwavegenerator : public signalgenerator
+{ // трапецеидальный сигнал
 public:
-    TrapezioidWaveGenerator();
-    void SetRizePeriod(double iRizePeriod); // wtf?)
-    void SetFallPeriod(double iFallPeriod);
+    trapezioidwavegenerator();
+    void SetRizePeriod(double iRizePeriod); // Метод/функция нарастания/фронта сигнала
+    void SetFallPeriod(double iFallPeriod); // Метод/функция уменьшения/спада сигнала.
+    ~trapezioidwavegenerator();
+private:
 };
 
 #endif // TRAPEZIOIDWAVEGENERATOR_H
