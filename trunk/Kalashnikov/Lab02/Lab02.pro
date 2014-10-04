@@ -15,7 +15,9 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    trapezioidwavegenerator.cpp
 
 HEADERS += \
-    signalgenerator.h
+    signalgenerator.h \
+    trapezioidwavegenerator.h
