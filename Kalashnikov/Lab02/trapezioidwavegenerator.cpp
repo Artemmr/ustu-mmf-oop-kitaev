@@ -1,11 +1,10 @@
 #include <trapezioidwavegenerator.h>
 
-
-TrapezioIDWaveGenerator::TrapezioIDWaveGenerator(){};
 //public signalgenerator
-double TrapezioIDWaveGenerator::GetSample(void){ //метод получения последующего сэмпла от генератора
+double TrapezioIDWaveGenerator::GetSample(){ //метод получения последующего сэмпла от генератора
 
 }
+
 void TrapezioIDWaveGenerator::SetFrequency(double iFrequency){ // метод задания частоты генерируемого сигнала
 
 }
@@ -18,7 +17,7 @@ void TrapezioIDWaveGenerator::SetOffset(double iOffset){ // метод зада�
 
 }
 
-void TrapezioIDWaveGenerator::ResetPosition(void){ // метод сброса текущего времени
+void TrapezioIDWaveGenerator::ResetPosition(){ // метод сброса текущего времени
 
 }
 
