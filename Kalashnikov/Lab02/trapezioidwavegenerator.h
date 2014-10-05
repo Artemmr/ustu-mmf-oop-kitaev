@@ -1,14 +1,23 @@
 #ifndef TRAPEZIOIDWAVEGENERATOR_H
+
 #define TRAPEZIOIDWAVEGENERATOR_H
 
-class trapezioidwavegenerator : public signalgenerator
+#include <signalgenerator.h>
+
+class TrapezioIDWaveGenerator : public SignalGenerator
 { // трапецеидальный сигнал
 public:
-    trapezioidwavegenerator();
+    TrapezioIDWaveGenerator();
+    //public signalgenerator
+    double GetSample(void);  //метод получения последующего сэмпла от генератора
+    void SetFrequency(double iFrequency); // метод задания частоты генерируемого сигнала
+    void SetAmplitude(double iAmplitude); // метод задания амплитуды генерируемого сигнала
+    void SetOffset(double iOffset); // метод задания сдвига фазы относительно начала отсчёта по времени
+    void ResetPosition(void); // метод сброса текущего времени
+    void SetDiscretizationFrequency(int iDescrFreq); // метод задания частоты дискретизации сигнала
+    //public trapezioidwavegenerator
     void SetRizePeriod(double iRizePeriod); // Метод/функция нарастания/фронта сигнала
     void SetFallPeriod(double iFallPeriod); // Метод/функция уменьшения/спада сигнала.
-    ~trapezioidwavegenerator();
-private:
 };
 
 #endif // TRAPEZIOIDWAVEGENERATOR_H
