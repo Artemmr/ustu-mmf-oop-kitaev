@@ -4,10 +4,10 @@
 
 #include <signalgenerator.h>
 
-class TrapezioIDWaveGenerator : public SignalGenerator
+class TrapezioidWaveGenerator : public SignalGenerator
 { // трапецеидальный сигнал
 public:
-    TrapezioIDWaveGenerator();
+    TrapezioidWaveGenerator();
     //public signalgenerator
     double GetSample();  //метод получения последующего сэмпла от генератора
     void SetFrequency(double iFrequency); // метод задания частоты генерируемого сигнала
