@@ -5,10 +5,25 @@
 #include <cstring>
 #include <cctype>
 
+//#include <sqrs.h>
+
 using namespace std;
 
-int main(){
+int square[][2] = { // инициализация массива
+    {1, 1},
+    {2, 4},
+    {3, 9},
+    {4, 16},
+    {5, 25},
+    {6, 36},
+    {7, 49},
+    {8, 64},
+    {9, 81},
+    {10, 100}
+};
 
+int main(){
+/*
     int sample[10];
 
     int t;
@@ -98,17 +113,17 @@ int main(){
         cout << nums1[t1] << "  ";
 
     cout << "\n\n";
-/*
-    char str[80];
 
-    cout << "Enter string: ";
-    cin >>  str;
+//    char str[80];
 
-    cout << "U string: ";
-    cout << str;
+//    cout << "Enter string: ";
+//    cin >>  str;
 
-    cout << "\n\n";
-*/
+//    cout << "U string: ";
+//    cout << str;
+
+//    cout << "\n\n";
+
     char rome[90];
 
     cout << "\npls, enter txt: ";
@@ -155,6 +170,100 @@ int main(){
         str[i] = tolower(str[i]);
 
     cout << str << "\n";
+
+    cout << "\n";
+
+    char roms[7] = "dsfs";
+
+    cout << "it's 4 el: " << roms[0];
+
+    cout << "\n\npls, enter first number 1..10: ";
+
+    int first,p;
+
+    cout << "\n\nEnter number 0..10: ";
+
+    first = 9;
+
+    for (p = 0; p < 10; p++){
+
+        if (square[p][0] == first)
+            break;
+    }
+
+    cout << "kvadrat bydet: " << square[p][1];
+
+    cout << "\n\n";
+    ////////////////
+    int i;
+
+    char str1[80] = {"E"};
+
+    char numbers[10][80] = {
+        "A","111",
+        "B","222",
+        "C","333",
+        "D","444",
+        "E","555",
+    };
+
+    cout << "isalpha?: ";
+
+    for (i = 0; i < 10; i += 2){
+        if (!strcmp(str1,numbers[i])){
+            cout << "Tel: " << numbers[i+1] << "\n";
+            break;
+        }
+        if (i == 9)
+            cout << "Error, sry!";
+    }
+    cout << "\n";
+
+    //int list[] = {1,2,3,4};
+
+    //char str[] = "Hi";
+
+    //int nums[] = {44,55,66,77};
+
+    int total;
+    int *ptr;
+    int val;
+
+    total = 3200; //
+    ptr = &total;
+    val = *ptr;
+
+    cout << "total = " << val << "\n";
+
+    int *z, num;
+
+    z = &num;
+
+    *z = 100;
+
+    cout << num << " ";
+    (*z)++;
+
+    cout << num << " ";
+    (*z)--;
+
+    cout << *z << "\n\n";
+
+*/
+
+    int *i, j[10];
+
+    double *f, g[10];
+
+    int x;
+
+    i = j;
+    f = g;
+
+    for (x = 0; x < 10; x++)
+        cout << i+x << ' ' << f+x << "\n\n";
+
+
 
     return 0;
 }
