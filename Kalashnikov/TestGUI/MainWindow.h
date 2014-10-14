@@ -14,6 +14,10 @@ public:
 public slots:
     void button0Click();
 
+private:
+
+    int _a;
+
 };
 
 
