@@ -5,6 +5,8 @@
 
 #include "PaintOutput.h"
 
+#include "TestPainter.h"
+
 MainWindow::MainWindow(QWidget *iParent):
     QWidget(iParent)
 {
@@ -19,6 +21,8 @@ MainWindow::MainWindow(QWidget *iParent):
         vlay->addWidget(new QPushButton("Button 2", parent));
         vlay->addWidget(new QPushButton("Button 3", parent));
     }
+    TestPainter *_painter = new TestPainter(parent);
+    hblayout->addWidget(_painter);
     hblayout->addWidget(bt0 = new QPushButton("Button 0", parent));
     hblayout->addWidget(bt1 = new QPushButton("Button 1", parent));
     hblayout->addWidget(new PaintOutput(parent));
