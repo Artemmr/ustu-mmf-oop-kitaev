@@ -3,10 +3,11 @@
 #include <QVBoxLayout> // диспетчер вертикаль
 #include <QPushButton>
 
+#include <testpainter.h>
 #include <paintoutput.h>
 
 MainWindow::MainWindow(QWidget *iParent):
-    QWidget(iParent)
+    QWidget(iParent), _a(10)
 {
     QWidget *parent = this;
 
@@ -25,6 +26,10 @@ MainWindow::MainWindow(QWidget *iParent):
     //Добавим в диспетчер размещений родителем будет окошечко.
     // кнопки
 
+    testpainter *_painter = new testpainter(parent);
+    hblayout->addWidget(_painter);
+    hblayout->
+
     hblayout->addWidget(bt0 = new QPushButton("Кнопка 0", this));
     hblayout->addWidget(bt1 = new QPushButton("Кнопка 1", this));
     hblayout->addWidget(new PaintOutput(parent));
@@ -35,6 +40,8 @@ MainWindow::MainWindow(QWidget *iParent):
 void MainWindow::button0Click()
 {
     this->setWindowTitle("Button 0 was click");
+   // this->width(600);
+   // this->height()
 }
 
 MainWindow::~MainWindow()
