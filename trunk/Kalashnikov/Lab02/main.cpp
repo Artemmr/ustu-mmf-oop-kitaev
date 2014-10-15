@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include <signalgenerator.h>            //Базовый абстрактный класс
-#include <trapezioidwavegenerator.h>    //Трапециедальный сигнал
+#include <signalgenerator.h>            //Базовый абстрактный класс/генартор
+#include <trapezioidwavegenerator.h>    //Генератор трапециедального сигнала
 
 using namespace std;
 

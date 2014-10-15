@@ -1,17 +1,15 @@
-#include "testpainter.h"
+#include "TestPainter.h"
 
 #include <QPainter>
 
-testpainter::testpainter(QWidget *parent) :
+TestPainter::TestPainter(QWidget *parent) :
     QWidget(parent)
 {
 }
 
-void testpainter::paintEvent(QPaintEvent *iEvent){ // отрисовка
-
+void TestPainter::paintEvent(QPaintEvent *iEvent)
+{
     QPainter painter(this);
-
     painter.setPen(Qt::black);
-
     painter.drawLine(0, 0, 100, 100);
 }
