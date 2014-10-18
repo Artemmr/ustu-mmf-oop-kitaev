@@ -1,13 +1,13 @@
-#include "PaintOutput.h"
+#include "TestPainter.h"
 
 #include <QPainter>
 
-PaintOutput::PaintOutput(QWidget *parent) :
+TestPainter::TestPainter(QWidget *parent) :
     QWidget(parent)
 {
 }
 
-void PaintOutput::paintEvent(QPaintEvent *iEvent)
+void TestPainter::paintEvent(QPaintEvent *iEvent)
 {
     QPainter painter(this);
     painter.setPen(Qt::black);

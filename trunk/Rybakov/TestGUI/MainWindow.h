@@ -14,6 +14,8 @@ public:
 public slots:
     void button0Click();
 
+private:
+
 };
 
 #endif // MAINWINDOW_H
