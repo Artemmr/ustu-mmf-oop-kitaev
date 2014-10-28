@@ -249,8 +249,6 @@ int main(){
 
     cout << *z << "\n\n";
 
-*/
-
     int *i, j[10];
 
     double *f, g[10];
@@ -263,8 +261,171 @@ int main(){
     for (x = 0; x < 10; x++)
         cout << i+x << ' ' << f+x << "\n\n";
 
+    int k;
+
+    char str[80] = "This Is A Street";
+
+    cout << "U str: " << str << "\n";
+
+    for (k = 0; str[k]; k++){
+        if (isupper(str[k]))
+            str[k] = tolower(str[k]);
+        else if (islower(str[k]))
+            str[k] = toupper(str[k]);
+    }
+
+    cout << "Our str: " << str << "\n";
+
+    char *p;
+
+    p = str;
+
+    while (*p){
+        if (isupper(*p))
+            *p = tolower(*p);
+        else if (islower(*p))
+            *p = toupper(*p);
+        p++;
+    }
+
+    cout << "and now: " << str << "\n";
+
+    char *p;
+    int i;
+    char str[80] = "This is street";
+
+    cout << "U string" << str << "\n";
+
+    p = str;
+
+    for (i = 0; p[i]; i++){
+        if(isupper(p[i]))
+            p[i] = tolower(p[i]);
+        else if (islower(p[i]))
+            p[i] = toupper(p[i]);
+    }
+
+    cout << "Our str:" << str << "\n\n";
 
 
+    char *ptr;
+
+    ptr = "Work!\n";
+
+    cout << ptr;
+
+    cout << "\n";
+
+    char str[] = "It's easy!";
+
+    char *start, *end;
+
+    int len;
+
+    char t;
+
+    cout << "U str: " << str << "\n";
+
+    len = strlen(str);
+
+    start = str;
+    end = &str[len-1];
+
+    while (start < end) {
+        t = *start;
+        *start = *end;
+        *end = t;
+
+        end--;
+        start++;
+    }
+
+    cout << "Our str: " << str << "\n";
+
+    int x, *p, **q;
+
+    x = 10;
+
+    p = &x;
+
+    q = &p;
+
+    cout << **q << "end,\n\n";
+
+
+    //1 short int hightemps[32];
+
+    //2 определение тип
+
+    int num[10];
+
+    for (int i = 0; i < 10; i++){// array numbers [10]
+        cout << "Pls, enter the num: ";
+        cin >> num[i];
+    }
+
+    for (int i = 0; i < 10; i++){
+        for (int j = i+1; j < 10; j++)
+            if (num[i] == num[j])
+                cout << i << " & " << j << " error!\n";
+    }
+
+
+    //массив эелемнтов типа чар/строковая константа
+
+    char a[80];
+    char b[80];
+    char *p1, *p2;
+
+    cout << "Pls, enter str \"a\": ";
+    cin >> a;
+
+    cout << "Pls, enter str \"b\": ";
+    cin >> b;
+
+    p1 = &a[0];
+    p2 = &b[0];
+
+    while (!*p1 && !*p2) {
+        if (tolower(*p1) != tolower(*p2))
+            break;
+        else {
+            p1++;
+            p2++;
+        }
+    }
+
+    if (!*p1 && !*p2)
+        cout << "No";
+    else
+        cout << "Yep";
+
+    //6 booth
+
+    //7 [][][][];
+
+    //8 int nums[] = {5, 66, 88};
+
+    //9
+
+    //10
+
+    //11
+
+    char str[80];
+
+    int count = 0;
+
+    cout << "enter str: ";
+    cin >> str;
+
+    for (int i = 0; str[i]; i++){
+        if (isupper(str[i]))
+            count++;
+    }
+
+    cout << "count :" << count << "\n";
+*/
     return 0;
 }
 
