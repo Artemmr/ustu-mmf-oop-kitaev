@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+class PaintOutput;
+
 class MainWindow : public QWidget
 {
     Q_OBJECT
@@ -15,6 +17,7 @@ public slots:
     void button0Click();
 
 private:
+    PaintOutput *_funcPainter;
 
 };
 
