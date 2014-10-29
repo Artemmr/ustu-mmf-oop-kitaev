@@ -1,5 +1,7 @@
 #include "noisegen.h"
 #include <math.h>
+#include <stdlib.h>     //srand, rand
+#include <time.h>       //time
 NoiseGen::NoiseGen()
 {
     Frequency = 20;
@@ -8,12 +10,14 @@ NoiseGen::NoiseGen()
     DiscrFreq = 1000;
 
     position = 0.0;
+    srand(time(0));
 }
 
 double NoiseGen::GetSample()
 {
-
-    return 0;
+    //double x = (double)rand()/RAND_MAX;
+    //srand(time(0));
+    return ((double)rand()/RAND_MAX-0.5)*2*Amplitude;
 }
 
 void NoiseGen::SetFrequency(double iFrequency)
