@@ -13,12 +13,18 @@ public:
     void ResetPosition();                   // метод сброса текущего времени
     void SetDiscrFrequency(int iDescrFreq); // метод задания частоты дискретизации сигнала
 
-private:
-    double Frequency;
-    double Amplitude;
-    double Offset;
-    int DescrFreq;
-    int Counter;
+protected:
+    double
+        Frequency,
+        Amplitude,
+        Offset;
+    int
+        DiscrFreq,
+        Counter;
+    unsigned int
+        position;
+
+
 };
 
 #endif // NOISEGEN_H

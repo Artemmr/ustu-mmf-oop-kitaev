@@ -16,8 +16,7 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    noisegen.cpp \
-    signalgen.cpp
+    noisegen.cpp
 
 HEADERS += \
     signalgen.h \
