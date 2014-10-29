@@ -1,6 +1,6 @@
 #ifndef NOISEGEN_H
 #define NOISEGEN_H
-#include <SignalGen.h>
+#include "SignalGen.h"
 
 class NoiseGen : public SignalGen
 {
@@ -11,7 +11,7 @@ public:
     void SetAmplitude(double iAmplitude);   // метод задания амплитуды генерируемого сигнала
     void SetOffset(double iOffset);         // метод задания сдвига фазы относительно начала отсчёта по времени
     void ResetPosition();                   // метод сброса текущего времени
-    void SetDiscrFrequency(int iDescrFreq); // метод задания частоты дискретизации сигнала
+    void SetDiscrFrequency(int iDiscrFreq); // метод задания частоты дискретизации сигнала
 
 protected:
     double
