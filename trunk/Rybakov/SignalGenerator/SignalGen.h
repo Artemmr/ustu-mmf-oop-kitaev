@@ -4,7 +4,6 @@
 class SignalGen
 {
 public:
-    SignalGen();
     virtual double GetSample(void);                 // метод получения последующего сэмпла от генератора
     virtual void SetFrequency(double iFrequency);   // метод задания частоты генерируемого сигнала
     virtual void SetAmplitude(double iAmplitude);   // метод задания амплитуды генерируемого сигнала

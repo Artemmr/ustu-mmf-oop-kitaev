@@ -1,32 +1,42 @@
 #include "noisegen.h"
-
-NoiseGen::NoiseGen(){
+#include <math.h>
+NoiseGen::NoiseGen()
+{
     Frequency = 20;
-    Amplitude = 0;
-    Offset = 0;
-    DescrFreq = 1000;
+    Amplitude = 1.0;
+    Offset = 0.0;
+    DiscrFreq = 1000;
+
+    position = 0.0;
 }
 
-double NoiseGen::GetSample(){
-return 0;
+double NoiseGen::GetSample()
+{
+
+    return 0;
 }
 
-void NoiseGen::SetFrequency(double iFrequency){
+void NoiseGen::SetFrequency(double iFrequency)
+{
     Frequency = iFrequency;
 }
 
-void NoiseGen::SetAmplitude(double iAmplitude){
+void NoiseGen::SetAmplitude(double iAmplitude)
+{
     Amplitude = iAmplitude;
 }
 
-void NoiseGen::SetOffset(double iOffset){
+void NoiseGen::SetOffset(double iOffset)
+{
     Offset = iOffset;
 }
 
-void NoiseGen::ResetPosition(){
-
+void NoiseGen::ResetPosition()
+{
+    position = 0.0;
 }
 
-void NoiseGen::SetDiscrFrequency(int iDescrFreq){
-
+void NoiseGen::SetDiscrFrequency(int iDiscrFreq)
+{
+    DiscrFreq = iDiscrFreq;
 }
