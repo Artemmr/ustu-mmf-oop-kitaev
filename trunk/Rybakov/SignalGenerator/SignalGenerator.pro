@@ -4,20 +4,21 @@
 #
 #-------------------------------------------------
 
-QT       += core
-
-QT       -= gui
+QT       += core widgets
 
 TARGET = SignalGenerator
-CONFIG   += console
-CONFIG   -= app_bundle
 
 TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    noisegen.cpp
+    noisegen.cpp \
+    mainwindow.cpp \
+    risovalka.cpp
 
-HEADERS += \
+HEADERS += mainwindow.h\
     signalgen.h \
-    noisegen.h
+    noisegen.h \
+    risovalka.h
+
+FORMS    +=

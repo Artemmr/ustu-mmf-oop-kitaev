@@ -5,7 +5,9 @@
 
 #include "PaintOutput.h"
 
-#include "TestPainter.h"
+//#include "TestPainter.h"
+
+#include "SampleGenerator.h"
 
 MainWindow::MainWindow(QWidget *iParent):
     QWidget(iParent)
@@ -21,11 +23,14 @@ MainWindow::MainWindow(QWidget *iParent):
         vlay->addWidget(new QPushButton("Button 2", parent));
         vlay->addWidget(new QPushButton("Button 3", parent));
     }
-    TestPainter *_painter = new TestPainter(parent);
-    hblayout->addWidget(_painter);
     hblayout->addWidget(bt0 = new QPushButton("Button 0", parent));
     hblayout->addWidget(bt1 = new QPushButton("Button 1", parent));
-    hblayout->addWidget(new PaintOutput(parent));
+    hblayout->addWidget(_funcPainter = new PaintOutput(parent));
+
+    SignalGenerator *_siggen = new SampleGenerator();
+
+    _siggen->SetAmplitude(30);
+    _funcPainter->SetGenerator(_siggen);
 
     connect(bt0, SIGNAL(clicked()), this, SLOT(button0Click()));
 }
