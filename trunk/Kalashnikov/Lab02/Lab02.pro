@@ -16,8 +16,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    trapezioidwavegenerator.cpp
+    trapezioidwavegenerator.cpp \
+    mainwindow.cpp
 
 HEADERS += \
     signalgenerator.h \
-    trapezioidwavegenerator.h
+    trapezioidwavegenerator.h \
+    mainwindow.h

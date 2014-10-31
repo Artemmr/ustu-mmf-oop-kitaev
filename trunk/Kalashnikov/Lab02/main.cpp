@@ -1,13 +1,12 @@
-#include <iostream>
+#include <QtWidgets/QApplication>
 
-#include <signalgenerator.h>            //Базовый абстрактный класс/генартор
-#include <trapezioidwavegenerator.h>    //Генератор трапециедального сигнала
+#include "MainWindow.h"
 
-using namespace std;
+int main (int argc, char *argv[]){
 
-int main (){
+    QApplication a(argc, argv);
+    MainWindow window;
+    window.show();
 
-
-
-    return 0;
+    return a.exec();
 }
