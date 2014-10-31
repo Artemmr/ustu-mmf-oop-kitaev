@@ -18,6 +18,19 @@ public:
     //public trapezioidwavegenerator
     void SetRizePeriod(double iRizePeriod); // Метод/функция нарастания/фронта сигнала
     void SetFallPeriod(double iFallPeriod); // Метод/функция уменьшения/спада сигнала.
+
+protected:
+    unsigned int
+        _position; /// номер сэмпла
+    double
+        _amplitude, /// Амлитуда сигнала
+        _frequency, /// частота сигнала
+        _phaseShift, /// смещение фазы сигнала
+        _RizePeriod, /// коэфициент нагнетания волны 
+        _FallPeriod;  /// коэфициент спада волны
+    int
+        _DescrFreq; /// частота дискретизации сигнала
+    
 };
 
 #endif // TRAPEZIOIDWAVEGENERATOR_H
