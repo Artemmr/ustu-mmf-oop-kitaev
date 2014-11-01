@@ -1,3 +1,4 @@
+/*
 #include <iostream>
 
 using namespace std;
@@ -7,6 +8,7 @@ void f();
 void f2();
 void f3(int *j);
 void power (int base, int exp);
+void display(int num [10]);
 
 int main(){
 
@@ -36,7 +38,19 @@ int main(){
 
     cout << i << "\n\n";
 
+    int t[10];
+
+    for (i = 0; i < 10; ++i)
+        t[i] = i;
+
+    display(t);
+
     return 0;
+}
+
+void display(int dex[10]){
+    for (int i = 0; i < 10; i++)
+        cout << dex[i] << " ";
 }
 
 void f3(int *j){
@@ -72,4 +86,41 @@ void f(){
     cout << "f\n";
     return;
     cout << "L&M";
+}
+*/
+
+//return-type   name function  (paramer)
+#include <iostream>
+
+#include "hypot.h"
+#include "mystrlen.h"
+
+using namespace std;
+
+int main (){
+    double
+        a,
+        b,
+        result;
+
+    cout << "Eneter a: ";
+    a = 3;
+    cout << a;
+
+    cout << "\nEnter b: ";
+    b = 4;
+    cout << b;
+
+    result = hypot(a,b);
+
+    cout << "\nHyp: " << result;
+    cout << "\n\n";
+
+    char str[80] = {"Loafsdlfa;sjldks\n"};
+
+    cout << mystrlen(str);
+
+
+    return 0;
+
 }
