@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2014-10-16T19:44:25
+# Project created by QtCreator 2014-11-01T20:32:54
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core
 
 QT       -= gui
 
-TARGET = example5
+TARGET = example6
 CONFIG   += console
 CONFIG   -= app_bundle
 
@@ -16,7 +16,3 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp
-
-HEADERS += \
-    hypot.h \
-    mystrlen.h
