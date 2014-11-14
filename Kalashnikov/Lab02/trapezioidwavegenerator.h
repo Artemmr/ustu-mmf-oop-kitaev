@@ -16,21 +16,26 @@ public:
     void ResetPosition(); // метод сброса текущего времени
     void SetDiscretizationFrequency(int iDescrFreq); // метод задания частоты дискретизации сигнала
     //public trapezioidwavegenerator
-    void SetRizePeriod(double iRizePeriod); // Метод/функция нарастания/фронта сигнала
-    void SetFallPeriod(double iFallPeriod); // Метод/функция уменьшения/спада сигнала.
+    void SetRizeTime(double iRizeTime); // Время нарастания
+    void SetFallTime(double iFallTime); // Время спада
+    void SetPeakTime(double iPeakTime); // Время на пике
+    //exp
 
 protected:
     unsigned int
-        _position; /// номер сэмпла
+        _Position; /// номер сэмпла
     double
-        _amplitude, /// Амлитуда сигнала
-        _frequency, /// частота сигнала
-        _phaseShift, /// смещение фазы сигнала
-        _RizePeriod, /// коэфициент нагнетания волны 
-        _FallPeriod;  /// коэфициент спада волны
+        _Amplitude, /// Амлитуда сигнала
+        _Frequency, /// частота сигнала
+        _PhaseShift, /// смещение фазы сигнала
+        _RizeTime, /// коэфициент нагнетания волны
+        _PeakTime, /// Скважность, время пика сколько идёт
+        _FallTime,  /// коэфициент спада волны
+        _Offset, /// Метод задания фазы
+        _CurrentPhase, /// Текущий номер фазы
+        _Time; //// Время текущей фазы
     int
         _DescrFreq; /// частота дискретизации сигнала
-    
 };
 
 #endif // TRAPEZIOIDWAVEGENERATOR_H
