@@ -3,6 +3,8 @@
 
 #include <QtWidgets/QWidget>
 
+#include "paintoutput.h"
+
 class MainWindow : public QWidget
 {
     Q_OBJECT
@@ -14,6 +16,7 @@ signals:
 public slots:
 
 private:
+    PaintOutput *ExampleGraphic;
 };
 
 #endif // MAINWINDOW_H

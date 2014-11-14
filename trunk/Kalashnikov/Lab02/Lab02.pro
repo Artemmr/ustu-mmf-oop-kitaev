@@ -6,7 +6,7 @@
 
 QT       += core
 
-QT       -= gui
+QT       += gui
 
 TARGET = Lab01
 CONFIG   += console
@@ -17,9 +17,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     trapezioidwavegenerator.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    paintoutput.cpp
 
 HEADERS += \
     signalgenerator.h \
     trapezioidwavegenerator.h \
-    mainwindow.h
+    mainwindow.h \
+    paintoutput.h

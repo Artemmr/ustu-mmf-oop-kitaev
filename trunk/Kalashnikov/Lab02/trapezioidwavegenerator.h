@@ -10,31 +10,34 @@ public:
     TrapezioidWaveGenerator();
     //public signalgenerator
     double GetSample();  //метод получения последующего сэмпла от генератора
-    void SetFrequency(double iFrequency); // метод задания частоты генерируемого сигнала
+    Result SetFrequency(double iFrequency); // метод задания частоты генерируемого сигнала
     void SetAmplitude(double iAmplitude); // метод задания амплитуды генерируемого сигнала
-    void SetOffset(double iOffset); // метод задания сдвига фазы относительно начала отсчёта по времени
+    Result SetOffset(double iOffset); // метод задания сдвига фазы относительно начала отсчёта по времени
     void ResetPosition(); // метод сброса текущего времени
-    void SetDiscretizationFrequency(int iDescrFreq); // метод задания частоты дискретизации сигнала
+    Result SetDiscretizationFrequency(int iDescrFreq); // метод задания частоты дискретизации сигнала
     //public trapezioidwavegenerator
-    void SetRizeTime(double iRizeTime); // Время нарастания
-    void SetFallTime(double iFallTime); // Время спада
-    void SetPeakTime(double iPeakTime); // Время на пике
+    Result SetRiseTime(double iRiseTime); // Время нарастания
+    Result SetFallTime(double iFallTime); // Время спада
+    Result SetPeakTime(double iPeakTime); // Время на пике
     //exp
 
 protected:
     unsigned int
         _Position; /// номер сэмпла
     double
+        _value, /// возвращения значения
         _Amplitude, /// Амлитуда сигнала
         _Frequency, /// частота сигнала
         _PhaseShift, /// смещение фазы сигнала
-        _RizeTime, /// коэфициент нагнетания волны
+        _RiseTime, /// коэфициент нагнетания волны
+        _InverseRiseTime, /// для удобства подстановки
         _PeakTime, /// Скважность, время пика сколько идёт
         _FallTime,  /// коэфициент спада волны
+        _InverseFallTime, /// для удобства подстановки
         _Offset, /// Метод задания фазы
-        _CurrentPhase, /// Текущий номер фазы
         _Time; //// Время текущей фазы
     int
+        _CurrentPhase, /// Текущий номер фазы
         _DescrFreq; /// частота дискретизации сигнала
 };
 
