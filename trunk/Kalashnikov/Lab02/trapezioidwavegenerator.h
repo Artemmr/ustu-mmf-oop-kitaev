@@ -2,7 +2,7 @@
 
 #define TRAPEZIOIDWAVEGENERATOR_H
 
-#include <signalgenerator.h>
+#include "signalgenerator.h"
 
 class TrapezioidWaveGenerator : public SignalGenerator
 { // трапецеидальный сигнал
