@@ -19,25 +19,25 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
     switch (_CurrentPhase){
 
         case 0: ///нарастание
-            double value = (-_Amplitude*(1.0-_Time*_InverseRiseTime))+_Amplitude(_Time*_InverseRiseTime);
+            _value = (-_Amplitude*(1.0-_Time*_InverseRiseTime))+_Amplitude*(_Time*_InverseRiseTime);
             if(_Time>_RiseTime){
                 _CurrentPhase = 1;
                 _Time -= _RiseTime;
             }
-            return value;
+            return _value;
             break;
 
         case 1: ///верхний пик
-            double value = _Amplitude;
+            _value = _Amplitude;
             if(_Time>_PeakTime){
                 _CurrentPhase = 2;
                 _Time -= _PeakTime;
             }
-            return value;
+            return _value;
             break;
 
         case 2: ///спад
-            double value = _Amplitude*(1.0-_Time*_InverseFallTime)-_Amplitude(_Time*_InverseFallTime);
+            _value = _Amplitude*(1.0-_Time*_InverseFallTime)-_Amplitude*(_Time*_InverseFallTime);
             if(_Time>_FallTime){
                 _CurrentPhase = 3;
                 _Time -= _FallTime;

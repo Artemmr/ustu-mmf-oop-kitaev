@@ -4,7 +4,7 @@
 PaintOutput::PaintOutput(QWidget *parent) :
     QWidget(parent)
 {
-    ExampleSignalGenerator = 0; //
+    ExampleSignalGenerator = 0;
 }
 
 void PaintOutput::paintEvent(QPaintEvent *iEvent){
