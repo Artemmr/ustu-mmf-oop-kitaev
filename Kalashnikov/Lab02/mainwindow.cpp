@@ -1,4 +1,3 @@
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QHBoxLayout>
 
 #include "mainwindow.h"
@@ -16,4 +15,8 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
     SignalGenerator *ExampleTrapezioidWaveGenerator = new TrapezioidWaveGenerator();
 
     ExampleTrapezioidWaveGenerator->SetAmplitude(200);
+}
+
+MainWindow::~MainWindow()
+{
 }

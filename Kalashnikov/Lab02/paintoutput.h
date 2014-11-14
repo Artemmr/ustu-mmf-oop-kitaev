@@ -13,12 +13,14 @@ public:
     virtual QSizePolicy sizePolicy() const {
         return QSizePolicy(QSizePolicy::Maximum,QSizePolicy::Maximum);
     }
-    virtual QSize sizeHint() const {return QSize(800,600);}
+    virtual QSize sizeHint() const {return QSize(150,150);}
 
     void SetGenerator(SignalGenerator *iSignalGenerator){ExampleSignalGenerator = iSignalGenerator;}
 signals:
 
 public slots:
+
+protected:
     virtual void paintEvent(QPaintEvent *iEvent);
 
     SignalGenerator *ExampleSignalGenerator;
