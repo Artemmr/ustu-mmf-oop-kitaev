@@ -11,7 +11,6 @@ TrapezioidWaveGenerator::TrapezioidWaveGenerator(){
     SetFallTime(0.002);     /// Время спада [c]
     SetPeakTime(0.005);     /// Время пика [c]
     _Time = _Offset;
-    _value = 0.0;           /// точка отсчёта
 }
 
 //public signalgenerator
@@ -20,25 +19,25 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
     switch (_CurrentPhase){
 
         case 0: ///нарастание
-            _value = (-_Amplitude*(1.0-_Time*_InverseRiseTime))+_Amplitude(_Time*_InverseRiseTime);
+            double value = (-_Amplitude*(1.0-_Time*_InverseRiseTime))+_Amplitude(_Time*_InverseRiseTime);
             if(_Time>_RiseTime){
                 _CurrentPhase = 1;
                 _Time -= _RiseTime;
             }
-            return _value;
+            return value;
             break;
 
         case 1: ///верхний пик
-            _value = _Amplitude;
+            double value = _Amplitude;
             if(_Time>_PeakTime){
                 _CurrentPhase = 2;
                 _Time -= _PeakTime;
             }
-            return _value;
+            return value;
             break;
 
         case 2: ///спад
-            _value = _Amplitude*(1.0-_Time*_InverseFallTime)-_Amplitude(_Time*_InverseFallTime);
+            double value = _Amplitude*(1.0-_Time*_InverseFallTime)-_Amplitude(_Time*_InverseFallTime);
             if(_Time>_FallTime){
                 _CurrentPhase = 3;
                 _Time -= _FallTime;
