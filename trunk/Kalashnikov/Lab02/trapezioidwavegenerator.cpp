@@ -10,7 +10,8 @@ TrapezioidWaveGenerator::TrapezioidWaveGenerator(){
     SetRiseTime(0.003);     /// Время нарастания [c]
     SetFallTime(0.002);     /// Время спада [c]
     SetPeakTime(0.005);     /// Время пика [c]
-    _Time = _Offset;
+    _Time = 0.02;
+    _value = 0.0;
 }
 
 //public signalgenerator
@@ -53,8 +54,8 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
                 _Time -= (1.0/_Frequency)-_RiseTime-_PeakTime-_FallTime;
             }
             return _value;
-            _Time++;
             break;
+
     }
 }
 
@@ -74,7 +75,6 @@ SignalGenerator::Result TrapezioidWaveGenerator::SetOffset(double iOffset){ /// 
     if (iOffset<0) {
         return BadValue;
     }
-
     _Offset = iOffset;
     return Success;
 }

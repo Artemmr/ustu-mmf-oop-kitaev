@@ -4,13 +4,11 @@
 #
 #-------------------------------------------------
 
-QT       += core
+QT       += core gui
 
-QT       += gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Lab01
-CONFIG   += console
-CONFIG   -= app_bundle
 
 TEMPLATE = app
 
@@ -21,7 +19,6 @@ SOURCES += main.cpp \
     paintoutput.cpp
 
 HEADERS += \
-    signalgenerator.h \
     trapezioidwavegenerator.h \
     mainwindow.h \
     paintoutput.h

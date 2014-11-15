@@ -9,10 +9,10 @@ PaintOutput::PaintOutput(QWidget *parent) :
 
 void PaintOutput::paintEvent(QPaintEvent *iEvent){
     QPainter painter(this);
-    const int x = height()/2;
-    painter.setPen(Qt::black);
+    int x = height()/2;
+    painter.setPen(Qt::red);
     painter.drawLine(0,x,width(),x);
-
+    /*
     if (ExampleSignalGenerator!=0){
         double values[2];
         values[0] = ExampleSignalGenerator->GetSample();
@@ -23,4 +23,5 @@ void PaintOutput::paintEvent(QPaintEvent *iEvent){
             values[0] = values[1];
         }
     }
+    */
 }
