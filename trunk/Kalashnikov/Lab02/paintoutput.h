@@ -1,7 +1,7 @@
 #ifndef PAINTOUTPUT_H
 #define PAINTOUTPUT_H
 
-#include <QtWidgets/QtWidgets>
+#include <QWidget>
 #include "signalgenerator.h"
 
 class PaintOutput : public QWidget
@@ -13,17 +13,17 @@ public:
     virtual QSizePolicy sizePolicy() const {
         return QSizePolicy(QSizePolicy::Maximum,QSizePolicy::Maximum);
     }
-    virtual QSize sizeHint() const {return QSize(150,150);}
+    virtual QSize sizeHint() const {return QSize(800,600);}
 
-    void SetGenerator(SignalGenerator *iSignalGenerator){ExampleSignalGenerator = iSignalGenerator;}
+    void SetGenerator(SignalGenerator *iSignalGenerator){ExSignalGenerator = iSignalGenerator;}
 signals:
 
 public slots:
 
 protected:
-    virtual void paintEvent(QPaintEvent *iEvent);
+    virtual void paintEvent(QPaintEvent *iEvent); ///Рисовалка
 
-    SignalGenerator *ExampleSignalGenerator;
+    SignalGenerator *ExSignalGenerator; /// указатель на экземпляр генератора сигналов
 };
 
 #endif // PAINTOUTPUT_H

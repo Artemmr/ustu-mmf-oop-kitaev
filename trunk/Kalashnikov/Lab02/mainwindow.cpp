@@ -1,4 +1,4 @@
-#include <QtWidgets/QHBoxLayout>
+#include <QVBoxLayout>
 
 #include "mainwindow.h"
 #include "signalgenerator.h"
@@ -7,15 +7,15 @@
 
 MainWindow::MainWindow(QWidget *iparent) : QWidget(iparent) {
 
-    QWidget *parent = this;
-    QHBoxLayout *hblayout = new QHBoxLayout;
+    QWidget *Parent = this;
+    QVBoxLayout *vblayout = new QVBoxLayout(Parent);
    
-    hblayout->addWidget(ExampleGraphic = new PaintOutput(parent));
+    vblayout->addWidget(ExGraphic = new PaintOutput(Parent));
 
-    SignalGenerator *ExampleTrapezioidWaveGenerator = new TrapezioidWaveGenerator();
+    SignalGenerator *ExTrapezioidWaveGenerator = new TrapezioidWaveGenerator();
 
-    ExampleTrapezioidWaveGenerator->SetAmplitude(200);
-    ExampleGraphic->SetGenerator(ExampleTrapezioidWaveGenerator);
+    ExTrapezioidWaveGenerator->SetAmplitude(3);
+    ExGraphic->SetGenerator(ExTrapezioidWaveGenerator);
 }
 
 MainWindow::~MainWindow()
