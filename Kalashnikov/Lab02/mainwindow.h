@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-#include "paintoutput.h"
+#include "PaintOutput.h"
 
 class MainWindow : public QWidget
 {
@@ -16,7 +16,7 @@ signals:
 public slots:
 
 private:
-    PaintOutput *ExampleGraphic;
+    PaintOutput *ExGraphic;
 };
 
 #endif // MAINWINDOW_H

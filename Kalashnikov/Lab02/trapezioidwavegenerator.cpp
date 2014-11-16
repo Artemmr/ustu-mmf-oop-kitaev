@@ -2,23 +2,20 @@
 
 TrapezioidWaveGenerator::TrapezioidWaveGenerator(){
     _DescrFreq = 1000;      /// Частота дискретизации 1000 Гц
-    _Frequency = 50;        /// Частота сигнала по-умолчанию 50 Гц
-    _Position = 0;          /// номер сэмпла
-    _Amplitude = 1;         /// Амлитуда сигнала
-    _Offset = 0;            /// Метод задания фазы
-    _CurrentPhase = 0.0;    /// Текущий номер фазы
-    SetRiseTime(0.003);     /// Время нарастания [c]
-    SetFallTime(0.002);     /// Время спада [c]
-    SetPeakTime(0.005);     /// Время пика [c]
-    _Time = 0.02;
+    _Frequency = 0.02;        /// Частота сигнала по-умолчанию 50 Гц
+    _Amplitude = 1.0;         /// Амлитуда сигнала
+    _Offset = 0.0;            /// Метод задания фазы
+    SetRiseTime(5);     /// Время нарастания [c]
+    SetFallTime(2.5);     /// Время спада [c]
+    SetPeakTime(3);     /// Время пика [c]
+    _Time = 29;
     _value = 0.0;
 }
 
 //public signalgenerator
 double TrapezioidWaveGenerator::GetSample(){ ///метод получения последующего сэмпла от генератора
-
+    for(_Position = 0; _Position <= )
     switch (_CurrentPhase){
-
         case 0: ///нарастание
             _value = (-_Amplitude*(1.0-_Time*_InverseRiseTime))+_Amplitude*(_Time*_InverseRiseTime);
             if(_Time>_RiseTime){
@@ -55,7 +52,6 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
             }
             return _value;
             break;
-
     }
 }
 
@@ -80,7 +76,6 @@ SignalGenerator::Result TrapezioidWaveGenerator::SetOffset(double iOffset){ /// 
 }
 
 void TrapezioidWaveGenerator::ResetPosition(){ /// метод сброса текущего времени
-    _Position = 0.0;
 }
 
 SignalGenerator::Result TrapezioidWaveGenerator::SetDiscretizationFrequency(int iDescrFreq){ /// метод задания частоты дискретизации сигнала
