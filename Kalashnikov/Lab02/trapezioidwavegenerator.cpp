@@ -16,11 +16,11 @@ TrapezioidWaveGenerator::TrapezioidWaveGenerator(){
 double TrapezioidWaveGenerator::GetSample(){ ///метод получения последующего сэмпла от генератора
     for(_Position = 0; _Position <= )
     switch (_CurrentPhase){
-        case 0: ///нарастание
+        case 0: ///нарастание //// в кейсах нужно выполнять не предекремент, а равенство, случайная опечатка была принята как истина в последней инстанции. по сути нужно переписать чуть, также добавить зависимость от фазы
             _value = (-_Amplitude*(1.0-_Time*_InverseRiseTime))+_Amplitude*(_Time*_InverseRiseTime);
             if(_Time>_RiseTime){
                 _CurrentPhase = 1;
-                _Time -= _RiseTime;
+                _Time -= _RiseTime; 
             }
             return _value;
             break;
