@@ -6,19 +6,21 @@ TrapezioidWaveGenerator::TrapezioidWaveGenerator(){
     _Amplitude = 1.0;         /// Амлитуда сигнала
     _Offset = 0.0;            /// Метод задания фазы
     SetRiseTime(5);     /// Время нарастания [c]
-    SetFallTime(2.5);     /// Время спада [c]
-    SetPeakTime(3);     /// Время пика [c]
-    _Time = 29;
+    SetFallTime(5);     /// Время спада [c]
+    SetPeakTime(5);     /// Время пика [c]
+    _Time = 10;
     _value = 0.0;
+    _CurrentPhase = 0; /// изначальнно фаза в нуле
 }
 
 //public signalgenerator
 double TrapezioidWaveGenerator::GetSample(){ ///метод получения последующего сэмпла от генератора
-    for(_Position = 0; _Position <= )
-    switch (_CurrentPhase){
-        case 0: ///нарастание //// в кейсах нужно выполнять не предекремент, а равенство, случайная опечатка была принята как истина в последней инстанции. по сути нужно переписать чуть, также добавить зависимость от фазы
-            _value = (-_Amplitude*(1.0-_Time*_InverseRiseTime))+_Amplitude*(_Time*_InverseRiseTime);
-            if(_Time>_RiseTime){
+
+    switch (_CurrentPhase){ /// здесь должен быть for, но нужно хоть со switch разобраться, кто подкинет идею с for молодец :D
+
+        case 0: ///нарастание
+            _value = (-_Amplitude)*(1.0-_Time*_InverseRiseTime)+_Amplitude*(_Time*_InverseRiseTime); /// формулка для кривой безье по двум точкам
+            if(_Time > _RiseTime){
                 _CurrentPhase = 1;
                 _Time -= _RiseTime; 
             }
@@ -27,7 +29,7 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
 
         case 1: ///верхний пик
             _value = _Amplitude;
-            if(_Time>_PeakTime){
+            if(_Time > _PeakTime){
                 _CurrentPhase = 2;
                 _Time -= _PeakTime;
             }
