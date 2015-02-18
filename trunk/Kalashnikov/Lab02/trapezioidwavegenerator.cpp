@@ -1,13 +1,13 @@
 #include "trapezioidwavegenerator.h"
 
 TrapezioidWaveGenerator::TrapezioidWaveGenerator(){
-    _DescrFreq = 1000;      /// Частота дискретизации 1000 Гц
+    _DescrFreq = 1;      /// Частота дискретизации 1000 Гц
     _Frequency = 0.02;        /// Частота сигнала по-умолчанию 50 Гц
     _Amplitude = 1.0;         /// Амлитуда сигнала
     _Offset = 0.0;            /// Метод задания фазы
-    SetRiseTime(5);     /// Время нарастания [c]
-    SetFallTime(5);     /// Время спада [c]
-    SetPeakTime(5);     /// Время пика [c]
+    SetRiseTime(0.3);     /// Время нарастания [c]
+    SetFallTime(0.04);     /// Время спада [c]
+    SetPeakTime(0.05);     /// Время пика [c]
     _Time = 10;
     _value = 0.0;
     _CurrentPhase = 0; /// изначальнно фаза в нуле
@@ -16,8 +16,11 @@ TrapezioidWaveGenerator::TrapezioidWaveGenerator(){
 //public signalgenerator
 double TrapezioidWaveGenerator::GetSample(){ ///метод получения последующего сэмпла от генератора
 
-    switch (_CurrentPhase){ /// здесь должен быть for, но нужно хоть со switch разобраться, кто подкинет идею с for молодец :D
+    switch (_CurrentPhase){
+        case 0:
+            _value = (-_Amplitude)*(1.0-_Time*_InverseRiseTime)+_Amplitude*(_Time*_InverseRiseTime);
 
+        /*старый кусочег
         case 0: ///нарастание
             _value = (-_Amplitude)*(1.0-_Time*_InverseRiseTime)+_Amplitude*(_Time*_InverseRiseTime); /// формулка для кривой безье по двум точкам
             if(_Time > _RiseTime){
@@ -54,6 +57,7 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
             }
             return _value;
             break;
+            */
     }
 }
 
