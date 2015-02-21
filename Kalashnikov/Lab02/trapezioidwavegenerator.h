@@ -19,7 +19,8 @@ public:
     //public trapezioidwavegenerator
     Result SetRiseTime(double iRiseTime);               /// Время нарастания
     Result SetFallTime(double iFallTime);               /// Время спада
-    Result SetPeakTime(double iPeakTime);               /// Время на пике
+    Result SetTopPeakTime(double iTopPeakTime);         /// Время на верхнем пике
+    Result SetBotPeakTime(double iBotPeakTime);         /// Время на нижнем пике
 
 protected:
     double
@@ -29,13 +30,13 @@ protected:
         _PhaseShift,            /// смещение фазы сигнала
         _RiseTime,              /// коэфициент нагнетания волны
         _InverseRiseTime,       /// для удобства подстановки
-        _PeakTime,              /// Скважность, время пика сколько идёт
+        _TopPeakTime,           /// Скважность, время пика сколько идёт на верху
+        _BotPeakTime,           /// Скважность, время пика сколько идёт на низу
         _FallTime,              /// коэфициент спада волны
         _InverseFallTime,       /// для удобства подстановки
         _Offset,                /// Метод задания фазы
-        _Time;                  /// Время текущей фазы
+        _Pos;                   /// Позиция в текущей фазе
     int
-        _Position,              /// количество колебаний
         _CurrentPhase,          /// Текущий номер фазы
         _DescrFreq;             /// частота дискретизации сигнала
 };

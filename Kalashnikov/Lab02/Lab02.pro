@@ -21,4 +21,5 @@ SOURCES += main.cpp \
 HEADERS += \
     trapezioidwavegenerator.h \
     mainwindow.h \
-    paintoutput.h
+    paintoutput.h \
+    signalgenerator.h
