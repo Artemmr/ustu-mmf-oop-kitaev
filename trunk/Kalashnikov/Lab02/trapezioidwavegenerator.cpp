@@ -1,9 +1,9 @@
 #include "trapezioidwavegenerator.h"
 
 TrapezioidWaveGenerator::TrapezioidWaveGenerator(){
-    _DescrFreq = 1;         /// Частота дискретизации 1000 Гц
+    _DescrFreq = 1000;      /// Частота дискретизации 1000 Гц
     _Frequency = 0.02;      /// Частота сигнала по-умолчанию 50 Гц
-    _Amplitude = 50;        /// Амлитуда сигнала
+    _Amplitude = 0.1;      /// Амлитуда сигнала
     _Offset = 0.0;          /// Метод задания фазы
     SetRiseTime(40);        /// Время нарастания [c]
     SetFallTime(50);        /// Время спада [c]
@@ -19,7 +19,7 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
 
     switch (_CurrentPhase){
         case 0:
-            _value = (-_Amplitude)*(1.0-_Pos*_InverseRiseTime)+_Amplitude*(_Pos*_InverseRiseTime);
+            _value = ((-_Amplitude)*(1.0-_Pos*_InverseRiseTime)+_Amplitude*(_Pos*_InverseRiseTime))*_DescrFreq;
             _Pos++;
             if (_Pos > _RiseTime) {
                 _CurrentPhase = 1;
@@ -29,7 +29,7 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
             break;
 
         case 1:
-            _value = _Amplitude;
+            _value = _Amplitude*_DescrFreq;
             _Pos++;
             if (_Pos > _TopPeakTime) {
                 _CurrentPhase = 2;
@@ -39,7 +39,7 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
             break;
 
         case 2:
-            _value = _Amplitude*(1.0-_Pos*_InverseFallTime)-_Amplitude*(_Pos*_InverseFallTime);
+            _value = (_Amplitude*(1.0-_Pos*_InverseFallTime)-_Amplitude*(_Pos*_InverseFallTime))*_DescrFreq;
             _Pos++;
             if (_Pos > _FallTime) {
                 _CurrentPhase = 3;
@@ -49,7 +49,7 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
             break;
 
         case 3:
-            _value = -_Amplitude;
+            _value = -_Amplitude*_DescrFreq;
             _Pos++;
             if (_Pos > _BotPeakTime) {
                 _CurrentPhase = 0;
