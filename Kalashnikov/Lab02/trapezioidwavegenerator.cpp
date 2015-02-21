@@ -1,10 +1,10 @@
 #include "trapezioidwavegenerator.h"
 
 TrapezioidWaveGenerator::TrapezioidWaveGenerator(){
-    _DescrFreq = 1000;      /// Частота дискретизации 1000 Гц
-    _Frequency = 0.02;      /// Частота сигнала по-умолчанию 50 Гц
-    _Amplitude = 0.1;      /// Амлитуда сигнала
-    _Offset = 0.0;          /// Метод задания фазы
+    _DescrFreq = 1000;      /// Частота дискретизации 1000 Гц, править через mainwindow.cpp
+    _Frequency = 50;        /// Частота сигнала по-умолчанию 50 Гц
+    _Amplitude = 0.1;       /// Амлитуда сигнала, править через mainwindow.cpp
+    _Offset = 0.0;          /// Метод сдвига фазы
     SetRiseTime(40);        /// Время нарастания [c]
     SetFallTime(50);        /// Время спада [c]
     SetTopPeakTime(60);     /// Время верхнего пика [c]
@@ -18,42 +18,43 @@ TrapezioidWaveGenerator::TrapezioidWaveGenerator(){
 double TrapezioidWaveGenerator::GetSample(){ ///метод получения последующего сэмпла от генератора
 
     switch (_CurrentPhase){
+        /// Нагнетание
         case 0:
             _value = ((-_Amplitude)*(1.0-_Pos*_InverseRiseTime)+_Amplitude*(_Pos*_InverseRiseTime))*_DescrFreq;
             _Pos++;
             if (_Pos > _RiseTime) {
                 _CurrentPhase = 1;
-                _Pos = 0;
+                _Pos -= _RiseTime;
             }
             return _value;
             break;
-
+        /// Верхний пик
         case 1:
             _value = _Amplitude*_DescrFreq;
             _Pos++;
             if (_Pos > _TopPeakTime) {
                 _CurrentPhase = 2;
-                _Pos = 0;
+                _Pos -= _TopPeakTime;
             }
             return _value;
             break;
-
+        /// Спад
         case 2:
             _value = (_Amplitude*(1.0-_Pos*_InverseFallTime)-_Amplitude*(_Pos*_InverseFallTime))*_DescrFreq;
             _Pos++;
             if (_Pos > _FallTime) {
                 _CurrentPhase = 3;
-                _Pos = 0;
+                _Pos -= _FallTime;
             }
             return _value;
             break;
-
+        /// Нижний пик
         case 3:
             _value = -_Amplitude*_DescrFreq;
             _Pos++;
             if (_Pos > _BotPeakTime) {
                 _CurrentPhase = 0;
-                _Pos = 0;
+                _Pos -= _BotPeakTime;
             }
             return _value;
             break;
@@ -112,7 +113,7 @@ void TrapezioidWaveGenerator::SetAmplitude(double iAmplitude){ /// метод з
 }
 
 SignalGenerator::Result TrapezioidWaveGenerator::SetOffset(double iOffset){ /// метод задания сдвига фазы относительно начала отсчёта по времени
-    if (iOffset<0) {
+    if (iOffset > 0.0) {
         return BadValue;
     }
     _Offset = iOffset;
@@ -123,7 +124,7 @@ void TrapezioidWaveGenerator::ResetPosition(){ /// метод сброса те�
 }
 
 SignalGenerator::Result TrapezioidWaveGenerator::SetDiscretizationFrequency(int iDescrFreq){ /// метод задания частоты дискретизации сигнала
-    if (iDescrFreq<=0) {
+    if (iDescrFreq <= 0) {
         return BadValue;
     }
     _DescrFreq = iDescrFreq;
@@ -132,7 +133,7 @@ SignalGenerator::Result TrapezioidWaveGenerator::SetDiscretizationFrequency(int 
 
 ///public trapezioidwavegenerator
 SignalGenerator::Result TrapezioidWaveGenerator::SetRiseTime(double iRiseTime){ /// Время нарастания сигнала (обратная величина)
-    if (iRiseTime<=0) {
+    if (iRiseTime <= 0) {
         return BadValue;
     }
 
@@ -142,7 +143,7 @@ SignalGenerator::Result TrapezioidWaveGenerator::SetRiseTime(double iRiseTime){ 
 }
 
 SignalGenerator::Result TrapezioidWaveGenerator::SetFallTime(double iFallTime){ /// Время спада сигнала (обратная величина)
-    if (iFallTime<=0) {
+    if (iFallTime <= 0) {
         return BadValue;
     }
 
@@ -151,16 +152,16 @@ SignalGenerator::Result TrapezioidWaveGenerator::SetFallTime(double iFallTime){ 
     return Success;
 }
 
-SignalGenerator::Result TrapezioidWaveGenerator::SetTopPeakTime(double iTopPeakTime){ ///время на пике
-    if (iTopPeakTime<=0) {
+SignalGenerator::Result TrapezioidWaveGenerator::SetTopPeakTime(double iTopPeakTime){ ///время на верхнем пике
+    if (iTopPeakTime <= 0) {
         return BadValue;
     }
     _TopPeakTime = iTopPeakTime;
     return Success;
 }
 
-SignalGenerator::Result TrapezioidWaveGenerator::SetBotPeakTime(double iBotPeakTime){ ///время на пике
-    if (iBotPeakTime<=0) {
+SignalGenerator::Result TrapezioidWaveGenerator::SetBotPeakTime(double iBotPeakTime){ ///время на нижнем пике
+    if (iBotPeakTime <= 0) {
         return BadValue;
     }
     _BotPeakTime = iBotPeakTime;
