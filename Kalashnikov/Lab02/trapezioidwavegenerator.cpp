@@ -92,7 +92,7 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
             _value = -_Amplitude;
             if(_Pos>(1.0/_Frequency)-_RiseTime-_PeakTime-_FallTime){
                 _CurrentPhase = 0;
-                _Pos -= (1.0/_Frequency)-_RiseTime-_PeakTime-_FallTime;
+                _Pos = _Pos - (1.0/_Frequency)-_RiseTime-_PeakTime-_FallTime;
             }
             return _value;
             break;
