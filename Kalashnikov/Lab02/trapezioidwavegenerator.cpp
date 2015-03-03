@@ -2,7 +2,7 @@
 
 TrapezioidWaveGenerator::TrapezioidWaveGenerator(){
     _DescrFreq = 1000;      /// Частота дискретизации 1000 Гц, править через mainwindow.cpp
-    _Frequency = 50;        /// Частота сигнала по-умолчанию 50 Гц
+    _Frequency = 1;        /// Частота сигнала по-умолчанию 50 Гц
     _Amplitude = 0.1;       /// Амлитуда сигнала, править через mainwindow.cpp
     _Offset = 0.0;          /// Метод сдвига фазы
     SetRiseTime(5);         /// Время нарастания [c]
@@ -10,7 +10,7 @@ TrapezioidWaveGenerator::TrapezioidWaveGenerator(){
     SetTopPeakTime(3);      /// Время верхнего пика [c]
     SetBotPeakTime(2);      /// Время нижнего пика [c]
     SetFrequency(10);       /// Зададим частоту
-    _Pos = 0.0;             /// Позиция в каждой фазе
+    ResetPosition();        /// Изначальная позиция нуль и никак иначе :)
     _value = 0.0;           /// Текущее положение точки на dr графика
     _CurrentPhase = 0;      /// изначальнно фаза в нуле
 }
@@ -22,7 +22,7 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
         /// Нагнетание
         case 0:
             _value = (-_Amplitude)*(1.0-_Pos*_InverseRiseTime)+_Amplitude*(_Pos*_InverseRiseTime);
-            _Pos += _InverseFrequency;
+            _Pos += _InverseFrequency*_Frequency;
             if (_Pos > _RiseTime) {
                 _CurrentPhase = 1;
                 _Pos -= _RiseTime;
@@ -32,7 +32,7 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
         /// Верхний пик
         case 1:
             _value = _Amplitude;
-            _Pos += _InverseFrequency;
+            _Pos += _InverseFrequency*_Frequency;
             if (_Pos > _TopPeakTime) {
                 _CurrentPhase = 2;
                 _Pos = 0;
@@ -42,62 +42,24 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
         /// Спад
         case 2:
             _value = _Amplitude*(1.0-_Pos*_InverseFallTime)-_Amplitude*(_Pos*_InverseFallTime);
-            _Pos += _InverseFrequency;
+            _Pos += _InverseFrequency*_Frequency;
             if (_Pos > _FallTime) {
                 _CurrentPhase = 3;
                 _Pos = 0;
             }
             return _value;
             break;
+
         /// Нижний пик
         case 3:
             _value = -_Amplitude;
-            _Pos += _InverseFrequency;
+            _Pos += _InverseFrequency*_Frequency;
             if (_Pos > _BotPeakTime) {
                 _CurrentPhase = 0;
                 _Pos = 0;
             }
             return _value;
             break;
-
-        /*старый кусочег
-        case 0: ///нарастание
-            _value = (-_Amplitude)*(1.0-_Pos*_InverseRiseTime)+_Amplitude*(_Pos*_InverseRiseTime); /// формулка для кривой безье по двум точкам
-            if(_Pos > _RiseTime){
-                _CurrentPhase = 1;
-                _Pos -= _RiseTime;
-            }
-            return _value;
-            break;
-
-        case 1: ///верхний пик
-            _value = _Amplitude;
-            if(_Pos > _PeakTime){
-                _CurrentPhase = 2;
-                _Pos -= _PeakTime;
-            }
-            return _value;
-            break;
-
-        case 2: ///спад
-            _value = _Amplitude*(1.0-_Pos*_InverseFallTime)-_Amplitude*(_Pos*_InverseFallTime);
-            if(_Pos>_FallTime){
-                _CurrentPhase = 3;
-                _Pos -= _FallTime;
-            }
-            return _value;
-            break;
-
-        case 3: ///нижний пик
-            default:
-            _value = -_Amplitude;
-            if(_Pos>(1.0/_Frequency)-_RiseTime-_PeakTime-_FallTime){
-                _CurrentPhase = 0;
-                _Pos = _Pos - (1.0/_Frequency)-_RiseTime-_PeakTime-_FallTime;
-            }
-            return _value;
-            break;
-            */
     }
 }
 

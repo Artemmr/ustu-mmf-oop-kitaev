@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *iparent) : QWidget(iparent) {
     SignalGenerator *ExTrapezioidWaveGenerator = new TrapezioidWaveGenerator();
 
     ExTrapezioidWaveGenerator->SetAmplitude(100);
+    ExTrapezioidWaveGenerator->SetDiscretizationFrequency(5);
     ExGraphic->SetGenerator(ExTrapezioidWaveGenerator);
 }
 
