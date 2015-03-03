@@ -22,7 +22,7 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
         /// Нагнетание
         case 0:
             _value = (-_Amplitude)*(1.0-_Pos*_InverseRiseTime)+_Amplitude*(_Pos*_InverseRiseTime);
-            _Pos += _InverseFrequency*_Frequency;
+            _Pos += _InverseRiseTime*_Frequency;
             if (_Pos > _RiseTime) {
                 _CurrentPhase = 1;
                 _Pos -= _RiseTime;
@@ -32,7 +32,7 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
         /// Верхний пик
         case 1:
             _value = _Amplitude;
-            _Pos += _InverseFrequency*_Frequency;
+            _Pos += _TopPeakTime*_Frequency;
             if (_Pos > _TopPeakTime) {
                 _CurrentPhase = 2;
                 _Pos = 0;
@@ -42,7 +42,7 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
         /// Спад
         case 2:
             _value = _Amplitude*(1.0-_Pos*_InverseFallTime)-_Amplitude*(_Pos*_InverseFallTime);
-            _Pos += _InverseFrequency*_Frequency;
+            _Pos += _InverseFallTime*_Frequency;
             if (_Pos > _FallTime) {
                 _CurrentPhase = 3;
                 _Pos = 0;
@@ -53,7 +53,7 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
         /// Нижний пик
         case 3:
             _value = -_Amplitude;
-            _Pos += _InverseFrequency*_Frequency;
+            _Pos += _BotPeakTime*_Frequency;
             if (_Pos > _BotPeakTime) {
                 _CurrentPhase = 0;
                 _Pos = 0;
