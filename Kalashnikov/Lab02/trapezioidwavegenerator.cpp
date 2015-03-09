@@ -1,18 +1,18 @@
 #include "trapezioidwavegenerator.h"
 
 TrapezioidWaveGenerator::TrapezioidWaveGenerator(){
-    _DescrFreq = 1000;      /// Частота дискретизации 1000 Гц, править через mainwindow.cpp
-    _Frequency = 1;        /// Частота сигнала по-умолчанию 50 Гц
-    _Amplitude = 0.1;       /// Амлитуда сигнала, править через mainwindow.cpp
-    _Offset = 0.0;          /// Метод сдвига фазы
-    SetRiseTime(5);         /// Время нарастания [c]
-    SetFallTime(6);         /// Время спада [c]
-    SetTopPeakTime(3);      /// Время верхнего пика [c]
-    SetBotPeakTime(2);      /// Время нижнего пика [c]
-    SetFrequency(10);       /// Зададим частоту
-    ResetPosition();        /// Изначальная позиция нуль и никак иначе :)
-    _value = 0.0;           /// Текущее положение точки на dr графика
-    _CurrentPhase = 0;      /// изначальнно фаза в нуле
+    SetDiscretizationFrequency(100);       /// Частота дискретизации 1000 Гц, править через mainwindow.cpp
+    _Frequency = 1;                         /// Частота сигнала по-умолчанию 50 Гц
+    SetAmplitude(100);                      /// Амлитуда сигнала, править через mainwindow.cpp
+    _Offset = 0.0;                          /// Метод сдвига фазы
+    SetRiseTime(5);                         /// Время нарастания [c]
+    SetFallTime(6);                         /// Время спада [c]
+    SetTopPeakTime(3);                      /// Время верхнего пика [c]
+    SetBotPeakTime(2);                      /// Время нижнего пика [c]
+    SetFrequency(10);                       /// Зададим частоту
+    ResetPosition();                        /// Изначальная позиция нуль и никак иначе :)
+    _value = 0.0;                           /// Текущее положение точки на dr графика
+    _CurrentPhase = 0;                      /// изначальнно фаза в нуле
 }
 
 //public signalgenerator
@@ -25,7 +25,7 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
             _Pos += _InverseRiseTime*_Frequency;
             if (_Pos > _RiseTime) {
                 _CurrentPhase = 1;
-                _Pos -= _RiseTime;
+                ResetPosition();
             }
             return _value;
             break;
@@ -35,7 +35,7 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
             _Pos += _TopPeakTime*_Frequency;
             if (_Pos > _TopPeakTime) {
                 _CurrentPhase = 2;
-                _Pos = 0;
+                ResetPosition();
             }
             return _value;
             break;
@@ -45,7 +45,7 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
             _Pos += _InverseFallTime*_Frequency;
             if (_Pos > _FallTime) {
                 _CurrentPhase = 3;
-                _Pos = 0;
+                ResetPosition();
             }
             return _value;
             break;
@@ -56,7 +56,7 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
             _Pos += _BotPeakTime*_Frequency;
             if (_Pos > _BotPeakTime) {
                 _CurrentPhase = 0;
-                _Pos = 0;
+                ResetPosition();
             }
             return _value;
             break;
