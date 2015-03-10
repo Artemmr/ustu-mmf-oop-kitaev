@@ -5,10 +5,10 @@
 #include "signalgenerator.h"
 
 class TrapezioidWaveGenerator : public SignalGenerator
-{ // трапецеидальный сигнал
+{ /// трапецеидальный сигнал
 public:
     TrapezioidWaveGenerator();
-    //public signalgenerator
+    ///public signalgenerator
     double GetSample();                                 ///метод получения последующего сэмпла от генератора
     Result SetFrequency(double iFrequency);             /// метод задания частоты генерируемого сигнала
     void SetAmplitude(double iAmplitude);               /// метод задания амплитуды генерируемого сигнала
@@ -16,7 +16,7 @@ public:
     void ResetPosition();                               /// метод сброса текущего времени
     Result SetDiscretizationFrequency(int iDescrFreq);  /// метод задания частоты дискретизации сигнала
 
-    //public trapezioidwavegenerator
+    ///public trapezioidwavegenerator
     Result SetRiseTime(double iRiseTime);               /// Время нарастания
     Result SetFallTime(double iFallTime);               /// Время спада
     Result SetTopPeakTime(double iTopPeakTime);         /// Время на верхнем пике
