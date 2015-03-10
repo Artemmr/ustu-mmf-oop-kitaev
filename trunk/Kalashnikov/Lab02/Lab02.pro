@@ -16,10 +16,12 @@ TEMPLATE = app
 SOURCES += main.cpp \
     trapezioidwavegenerator.cpp \
     mainwindow.cpp \
-    paintoutput.cpp
+    paintoutput.cpp \
+    signalmixer.cpp
 
 HEADERS += \
     trapezioidwavegenerator.h \
     mainwindow.h \
     paintoutput.h \
-    signalgenerator.h
+    signalgenerator.h \
+    signalmixer.h

@@ -2,7 +2,7 @@
 
 TrapezioidWaveGenerator::TrapezioidWaveGenerator(){
     SetDiscretizationFrequency(100);       /// Частота дискретизации 1000 Гц, править через mainwindow.cpp
-    _Frequency = 1;                         /// Частота сигнала по-умолчанию 50 Гц
+    _Frequency = 1.0;                         /// Частота сигнала по-умолчанию 50 Гц
     SetAmplitude(100);                      /// Амлитуда сигнала, править через mainwindow.cpp
     _Offset = 0.0;                          /// Метод сдвига фазы
     SetRiseTime(5);                         /// Время нарастания [c]
@@ -22,30 +22,30 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
         /// Нагнетание
         case 0:
             _value = (-_Amplitude)*(1.0-_Pos*_InverseRiseTime)+_Amplitude*(_Pos*_InverseRiseTime);
-            _Pos += _InverseRiseTime*_Frequency;
+            _Pos += _InverseFrequency;
             if (_Pos > _RiseTime) {
                 _CurrentPhase = 1;
-                ResetPosition();
+                _Pos -= _RiseTime;
             }
             return _value;
             break;
         /// Верхний пик
         case 1:
             _value = _Amplitude;
-            _Pos += _TopPeakTime*_Frequency;
+            _Pos += _InverseFrequency;
             if (_Pos > _TopPeakTime) {
                 _CurrentPhase = 2;
-                ResetPosition();
+                _Pos -= _TopPeakTime;
             }
             return _value;
             break;
         /// Спад
         case 2:
             _value = _Amplitude*(1.0-_Pos*_InverseFallTime)-_Amplitude*(_Pos*_InverseFallTime);
-            _Pos += _InverseFallTime*_Frequency;
+            _Pos += _InverseFrequency;
             if (_Pos > _FallTime) {
                 _CurrentPhase = 3;
-                ResetPosition();
+                _Pos -= _FallTime;
             }
             return _value;
             break;
@@ -53,10 +53,10 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
         /// Нижний пик
         case 3:
             _value = -_Amplitude;
-            _Pos += _BotPeakTime*_Frequency;
+            _Pos += _InverseFrequency;
             if (_Pos > _BotPeakTime) {
                 _CurrentPhase = 0;
-                ResetPosition();
+                _Pos -= _BotPeakTime;
             }
             return _value;
             break;
