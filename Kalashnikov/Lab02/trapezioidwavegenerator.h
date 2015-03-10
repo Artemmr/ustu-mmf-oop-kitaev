@@ -24,9 +24,9 @@ public:
 
 protected:
     double
-        _value,                         ///+ Возвращения значения
-        _Amplitude,                     ///+ Амлитуда сигнала
-        _Frequency,                     ///+ частота сигнала
+        _value,                         /// Возвращения значения
+        _Amplitude,                     /// Амлитуда сигнала
+        _Frequency,                     /// частота сигнала
         _InverseFrequency,              /// Период, как обратная величина к частоте сигнала
         _PhaseShift,                    /// смещение фазы сигнала
         _RiseTime,                      /// коэфициент нагнетания волны
@@ -36,10 +36,10 @@ protected:
         _FallTime,                      /// коэфициент спада волны
         _InverseFallTime,               /// для удобства подстановки
         _Offset,                        /// Сдвиг  фазы
+        _DescrFreq,                     /// частота дискретизации сигнала
         _Pos;                           /// Позиция в текущей фазе
     int
-        _CurrentPhase,                  /// Текущий номер фазы
-        _DescrFreq;                     /// частота дискретизации сигнала
+        _CurrentPhase;                  /// Текущий номер фазы
 };
 
 #endif // TRAPEZIOIDWAVEGENERATOR_H
