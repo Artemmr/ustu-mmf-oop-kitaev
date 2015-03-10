@@ -4,9 +4,3 @@ SignalMixer::SignalMixer()
 {
 
 }
-
-SignalMixer::~SignalMixer()
-{
-
-}
-
