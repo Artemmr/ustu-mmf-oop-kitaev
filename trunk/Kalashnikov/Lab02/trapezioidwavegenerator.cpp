@@ -1,10 +1,9 @@
 #include "trapezioidwavegenerator.h"
 
 TrapezioidWaveGenerator::TrapezioidWaveGenerator(){
-    SetDiscretizationFrequency(100);       /// Частота дискретизации 1000 Гц, править через mainwindow.cpp
-    _Frequency = 1.0;                         /// Частота сигнала по-умолчанию 50 Гц
+    SetDiscretizationFrequency(1000);       /// Частота дискретизации
     SetAmplitude(100);                      /// Амлитуда сигнала
-    _Offset = 0.0;                          /// Метод сдвига фазы
+    SetOffset(0.0);                         /// Метод сдвига фазы
     SetRiseTime(5);                         /// Время нарастания [c]
     SetFallTime(6);                         /// Время спада [c]
     SetTopPeakTime(3);                      /// Время верхнего пика [c]
@@ -61,7 +60,7 @@ double TrapezioidWaveGenerator::GetSample(){ ///метод получения п
             return _value;
             break;
         default:
-        return 0.0;
+        return -1.0;
     }
 }
 
@@ -79,7 +78,7 @@ void TrapezioidWaveGenerator::SetAmplitude(double iAmplitude){ /// метод з
 }
 
 SignalGenerator::Result TrapezioidWaveGenerator::SetOffset(double iOffset){ /// метод задания сдвига фазы относительно начала отсчёта по времени
-    if (iOffset < 0.0) { /// Лол, а оно тут вообще нужно?!
+    if (iOffset < 0.0) {
         return BadValue;
     }
     _Offset = iOffset;
