@@ -37,7 +37,6 @@ protected:
         _InverseFallTime,               /// для удобства подстановки
         _Offset,                        /// Сдвиг  фазы
         _Pos;                           /// Позиция в текущей фазе
-        ///_DescrFreqmulInverseRiseTime    ///
     int
         _CurrentPhase,                  /// Текущий номер фазы
         _DescrFreq;                     /// частота дискретизации сигнала
