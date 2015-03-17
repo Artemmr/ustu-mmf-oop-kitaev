@@ -15,8 +15,6 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 
-SOURCES += main.cpp \
-    TestClass.cpp
+SOURCES += main.cpp
 
-HEADERS += \
-    TestClass.h
+HEADERS +=

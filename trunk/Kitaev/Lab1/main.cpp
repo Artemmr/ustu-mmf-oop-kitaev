@@ -2,54 +2,26 @@
 
 #include <QString>
 
-int b;
-
-void VoidFunction()
-{
-    int a;
-    int b;
-}
-
-int intFunction(int iArg1)
-{
-    return iArg1/2;
-}
-
-double intFunction(double iArg1)
-{
-    return iArg1/2.0;
-}
+#include <vector>
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
     
-    int b = 0;
+    std::vector<int> b;
+    b.push_back(3);//[3]
+    b.push_back(2);//[3 2]
+    b.push_back(1);//[3 2 1]
 
-    bool bool1;
-    bool1 = true;
-    bool1 = false;
+    int c = b[1];//c = 2
 
-    char ch = 'a';
+    b[0] = 5;//[5 2 1]
 
-    uint8_t ui8 = 12;
+    int size = b.size();//size = 3
 
-    int i16 = -25;
+    b.push_back(7);
 
-    int result = intFunction(i16);
-
-    double dresult = intFunction((double)i16);
-
-    int *pi16, **ppi16;
-
-    pi16 = &i16;
-
-    ppi16 = &pi16;
-
-    *pi16 = -30;
-
-    QString string1;
-    string1 = "Это строка 1";
+    size = b.size();//size = 4
 
     return a.exec();
 }
