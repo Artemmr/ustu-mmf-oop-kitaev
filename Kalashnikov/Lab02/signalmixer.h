@@ -2,6 +2,9 @@
 
 #define SIGNALMIXER_H
 
+#include <QString>
+#include <vector>
+
 #include "signalgenerator.h"
 
 class SignalMixer : public SignalGenerator
@@ -17,6 +20,7 @@ public:
     Result SetDiscretizationFrequency(int iDescrFreq);  /// метод задания частоты дискретизации сигнала
 
     ///public signalmixer
+
 protected:
     double
         _Pos,                           /// Позиция в текущей фазе
