@@ -13,11 +13,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         MainWindow.cpp \
     PaintOutput.cpp \
-    SampleGenerator.cpp
+    SampleGenerator.cpp \
+    signalmixer.cpp
 
 HEADERS  += MainWindow.h \
     PaintOutput.h \
     signalgenerator.h \
-    SampleGenerator.h
+    SampleGenerator.h \
+    signalmixer.h
 
 FORMS    +=

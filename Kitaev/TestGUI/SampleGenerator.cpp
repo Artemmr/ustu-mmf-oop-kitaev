@@ -1,9 +1,10 @@
 #include "SampleGenerator.h"
+#define _USE_MATH_DEFINES
 #include <math.h>
 
 SampleGenerator::SampleGenerator()
 {
-    _discrFreq = 1000;///Частота дискретизации по-умолчанию - 1000 Гц
+    _discrFreq = 1000;///Частота дискретизации по-умолчанию - 1000 Гц 
     _frequency = 50.0;///Частота сигнала по-умолчанию - 50 Гц
     _phaseShift = 0.0;///Сдвиг фазы по-умолчанию - 0
     _amplitude = 1.0;
