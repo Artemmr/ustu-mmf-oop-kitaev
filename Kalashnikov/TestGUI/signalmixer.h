@@ -1,4 +1,4 @@
-#ifndef SIGNALMIXER_H
+п»ї#ifndef SIGNALMIXER_H
 #define SIGNALMIXER_H
 
 #include "signalgenerator.h"
@@ -22,22 +22,22 @@ public:
     virtual void ResetPosition();
     virtual void SetDiscretizationFrequency(int iDescrFreq);
 
-    ///Добавить источник сигнала
+    ///Р”РѕР±Р°РІРёС‚СЊ РёСЃС‚РѕС‡РЅРёРє СЃРёРіРЅР°Р»Р°
     bool AddSignalSource(SignalGenerator *iSource);
-    ///Удалить источник сигнала
+    ///РЈРґР°Р»РёС‚СЊ РёСЃС‚РѕС‡РЅРёРє СЃРёРіРЅР°Р»Р°
     bool RemoveSignalSource(SignalGenerator *iSource);
-    ///Возвращает true, если такой источник уже подключен
+    ///Р’РѕР·РІСЂР°С‰Р°РµС‚ true, РµСЃР»Рё С‚Р°РєРѕР№ РёСЃС‚РѕС‡РЅРёРє СѓР¶Рµ РїРѕРґРєР»СЋС‡РµРЅ
     bool ContainsSignalSource(SignalGenerator *iSource);
 
 private:
-    ///Источники сигнала, подключенные к микшеру
+    ///РСЃС‚РѕС‡РЅРёРєРё СЃРёРіРЅР°Р»Р°, РїРѕРґРєР»СЋС‡РµРЅРЅС‹Рµ Рє РјРёРєС€РµСЂСѓ
     std::vector<SignalGenerator*> _sources;
 
     QDial *_CommonDial;
 
     double _masterAmp;
 private slots:
-    ///Слот для обработки изменения положения регуляторов
+    ///РЎР»РѕС‚ РґР»СЏ РѕР±СЂР°Р±РѕС‚РєРё РёР·РјРµРЅРµРЅРёСЏ РїРѕР»РѕР¶РµРЅРёСЏ СЂРµРіСѓР»СЏС‚РѕСЂРѕРІ
     void knobValueChanged(int value);
 };
 

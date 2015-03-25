@@ -1,4 +1,4 @@
-#include "signalmixer.h"
+﻿#include "signalmixer.h"
 
 SignalMixer::SignalMixer()
 {
@@ -6,40 +6,49 @@ SignalMixer::SignalMixer()
 }
 
 double SignalMixer::GetSample(){ ///метод получения последующего сэмпла от генератора
+    std::vector<double> new_samples(_Source.size());
 
-    return 0.0;
+    for(unsigned int i = 0; i < _Source.size(); ++i)
+        new_samples[i] = _Source[i]->GetSample();
+
+    double summ = 0.0;
+    for(unsigned int i = 0; i < _Source.size(); ++i)
+        summ+=new_samples[i]; ///TODO необходимо добавить коэфф усиления для каждого источника
+    summ/=new_samples.size(); ///TODO Необходимо добавить коэфф усиления на выходе
+
+    return summ*_masterAmp;
 }
 
-SignalGenerator::Result SignalMixer::SetFrequency(double iFrequency){ /// метод задания частоты генерируемого сигнала
-    if (iFrequency <= 0) {
-        return BadValue;
-    }
-    _Frequency = iFrequency;
-    _InverseFrequency = (1.0/_Frequency);
-    return Success;
-}
-
-void SignalMixer::SetAmplitude(double iAmplitude){ /// метод задания амплитуды генерируемого сигнала
-    _Amplitude = iAmplitude;
-}
-
-SignalGenerator::Result SignalMixer::SetOffset(double iOffset){ /// метод задания сдвига фазы относительно начала отсчёта по времени
-    if (iOffset < 0.0) {
-        return BadValue;
-    }
-    _Offset = iOffset;
-    return Success;
-}
 
 void SignalMixer::ResetPosition(){ /// метод сброса текущего времени
-    _Pos = 0;
+    for (unsigned int i = 0; i < _Source.size(); ++i)
+        _Source[i]->ResetPosition();
 }
 
-
 SignalGenerator::Result SignalMixer::SetDiscretizationFrequency(int iDescrFreq){ /// метод задания частоты дискретизации сигнала
-    if (iDescrFreq <= 0) {
+    for (unsigned int i = 0; i < _Source.size(); ++i)
+        _Source[i]->SetDiscretizationFrequency(iDescrFreq);
+    return Success;
+}
+
+SignalGenerator::Result SignalMixer::AddSignalSource(SignalGenerator *iSource){ /// Добавляем генератор сигнала
+    if (iSource == 0) //
         return BadValue;
-    }
-    _DescrFreq = iDescrFreq;
+    if (ContainsSignalSource(iSource))
+        return BadValue;
+    _Source.push_back(iSource);
+    return Success;
+}
+
+SignalGenerator::Result SignalMixer::ContainsSignalSource(SignalGenerator *iSource){/// Проверка на дубли
+    for (unsigned int i = 0; i < _Source.size(); ++i)
+        if (_Source[i] == iSource)
+            return Success;
+    return BadValue;
+}
+
+SignalGenerator::Result SignalMixer::RemoveSignalSource(SignalGenerator *iSource){/// Убираем генератор сигнала
+    if(!ContainsSignalSource(iSource))
+        return BadValue;
     return Success;
 }

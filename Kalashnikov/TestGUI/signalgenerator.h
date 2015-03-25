@@ -1,4 +1,4 @@
-#ifndef SIGNALGENERATOR_H
+﻿#ifndef SIGNALGENERATOR_H
 
 #define SIGNALGENERATOR_H
 

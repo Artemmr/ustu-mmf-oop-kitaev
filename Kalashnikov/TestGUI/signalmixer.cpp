@@ -1,4 +1,4 @@
-#include "signalmixer.h"
+ï»¿#include "signalmixer.h"
 
 #include <QLabel>
 #include <QDial>
@@ -27,12 +27,12 @@ void SignalMixer::knobValueChanged(int value)
 {
     if(QObject::sender()==_CommonDial)
     {
-        ///TODO èçìåíèòü çíà÷åíèå êîýôô âûõîäíîãî óñèëåíèÿ
-        _masterAmp = _CommonDial->value()/50.;///TODO 50 - öèôðà ñ ïîòîëêà, ïåðåäåëàòü
+        ///TODO Ð¸Ð·Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ ÐºÐ¾ÑÑ„Ñ„ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ ÑƒÑÐ¸Ð»ÐµÐ½Ð¸Ñ
+        _masterAmp = _CommonDial->value()/50.;///TODO 50 - Ñ†Ð¸Ñ„Ñ€Ð° Ñ Ð¿Ð¾Ñ‚Ð¾Ð»ÐºÐ°, Ð¿ÐµÑ€ÐµÐ´ÐµÐ»Ð°Ñ‚ÑŒ
     }
 }
 
-///Äîáàâèòü èñòî÷íèê ñèãíàëà
+///Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¸ÑÑ‚Ð¾Ñ‡Ð½Ð¸Ðº ÑÐ¸Ð³Ð½Ð°Ð»Ð°
 bool SignalMixer::AddSignalSource(SignalGenerator *iSource)
 {
     if(iSource==0)
@@ -43,7 +43,7 @@ bool SignalMixer::AddSignalSource(SignalGenerator *iSource)
     return true;
 }
 
-///Óäàëèòü èñòî÷íèê ñèãíàëà
+///Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ Ð¸ÑÑ‚Ð¾Ñ‡Ð½Ð¸Ðº ÑÐ¸Ð³Ð½Ð°Ð»Ð°
 bool SignalMixer::RemoveSignalSource(SignalGenerator *iSource)
 {
     if(!ContainsSignalSource(iSource))
@@ -71,8 +71,8 @@ double SignalMixer::GetSample()
         new_samples[i] = _sources[i]->GetSample();
     double summ = 0.0;
     for(unsigned int i = 0; i<new_samples.size(); ++i)
-        summ+=new_samples[i];///TODO äîáàâèòü êîýôôèöèåíòû óñèëåíèÿ äëÿ êàæäîãî èñòî÷íèêà
-    summ/=new_samples.size();///TODO äîáàâèòü îáùèé êîýôô óñèëåíèÿ íà âûõîäå
+        summ+=new_samples[i];///TODO Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ ÐºÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚Ñ‹ ÑƒÑÐ¸Ð»ÐµÐ½Ð¸Ñ Ð´Ð»Ñ ÐºÐ°Ð¶Ð´Ð¾Ð³Ð¾ Ð¸ÑÑ‚Ð¾Ñ‡Ð½Ð¸ÐºÐ°
+    summ/=new_samples.size();///TODO Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¾Ð±Ñ‰Ð¸Ð¹ ÐºÐ¾ÑÑ„Ñ„ ÑƒÑÐ¸Ð»ÐµÐ½Ð¸Ñ Ð½Ð° Ð²Ñ‹Ñ…Ð¾Ð´Ðµ
     return summ*_masterAmp;
 }
 

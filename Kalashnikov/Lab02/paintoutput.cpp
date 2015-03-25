@@ -1,4 +1,4 @@
-#include "paintoutput.h"
+﻿#include "paintoutput.h"
 #include <QPainter>
 
 PaintOutput::PaintOutput(QWidget *parent) :

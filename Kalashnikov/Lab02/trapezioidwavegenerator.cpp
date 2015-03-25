@@ -1,4 +1,4 @@
-#include "trapezioidwavegenerator.h"
+﻿#include "trapezioidwavegenerator.h"
 
 TrapezioidWaveGenerator::TrapezioidWaveGenerator(){
     SetDiscretizationFrequency(1000);       /// Частота дискретизации
@@ -15,7 +15,7 @@ TrapezioidWaveGenerator::TrapezioidWaveGenerator(){
 }
 
 //public signalgenerator
-double TrapezioidWaveGenerator::GetSample(){ ///метод получения последующего сэмпла от генератора
+double TrapezioidWaveGenerator::GetSample(){///метод получения последующего сэмпла от генератора
 
     switch (_CurrentPhase){
         /// Нагнетание
