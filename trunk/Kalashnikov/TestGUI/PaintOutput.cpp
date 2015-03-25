@@ -1,4 +1,4 @@
-#include "PaintOutput.h"
+﻿#include "PaintOutput.h"
 
 #include <QPainter>
 

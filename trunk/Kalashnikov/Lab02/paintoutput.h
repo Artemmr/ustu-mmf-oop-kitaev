@@ -1,4 +1,4 @@
-#ifndef PAINTOUTPUT_H
+﻿#ifndef PAINTOUTPUT_H
 #define PAINTOUTPUT_H
 
 #include <QWidget>

@@ -12,26 +12,24 @@ class SignalMixer : public SignalGenerator
 public:
     SignalMixer();
     ///public signalgenerator
-    double GetSample();                                 /// метод получения последующего сэмпла от генератора
-    Result SetFrequency(double iFrequency);             /// метод задания частоты генерируемого сигнала
-    void SetAmplitude(double iAmplitude);               /// метод задания амплитуды генерируемого сигнала
-    Result SetOffset(double iOffset);                   /// метод задания сдвига фазы относительно начала отсчёта по времени
-    void ResetPosition();                               /// метод сброса текущего времени
-    Result SetDiscretizationFrequency(int iDescrFreq);  /// метод задания частоты дискретизации сигнала
+    double GetSample();                                             /// метод получения последующего сэмпла от генератора
+    Result SetFrequency(double /*iFrequency*/){return Success;}     /// метод задания частоты генерируемого сигнала
+    void SetAmplitude(double /*iAmplitude*/){}                      /// метод задания амплитуды генерируемого сигнала
+    Result SetOffset(double /*iOffset*/){return Success;}           /// метод задания сдвига фазы относительно начала отсчёта по времени
+    void ResetPosition();                                           /// метод сброса текущего времени
+    Result SetDiscretizationFrequency(int iDescrFreq);              /// метод задания частоты дискретизации сигнала
 
     ///public signalmixer
+    Result AddSignalSource (SignalGenerator *iSource);              /// Добавляем генератор сигнала
+    Result ContainsSignalSource (SignalGenerator *iSource);         /// Проверка на дубли
+    Result RemoveSignalSource (SignalGenerator *iSource);           /// Убираем генератор сигнала
 
-protected:
-    double
-        _Pos,                           /// Позиция в текущей фазе
-        _DescrFreq,                     /// частота дискретизации сигнала
-        _Offset,                        /// Сдвиг  фазы
-        _Amplitude,                     /// Амлитуда сигнала
-        _Frequency,                     /// частота сигнала
-        _InverseFrequency,              /// Период, как обратная величина к частоте сигнала
-        _value;                         /// возвращение значения
-    int
-        _INSignal[];                    /// Массив входящих сигналов
+private:
+    std::vector<SignalGenerator*> _Source;                          /// коллекция входящих сигналов
+
+    double _masterAmp;
+
+///private slots:
 
 
 };

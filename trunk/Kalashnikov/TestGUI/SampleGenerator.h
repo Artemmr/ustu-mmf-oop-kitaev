@@ -1,4 +1,4 @@
-#ifndef SAMPLEGENERATOR_H
+﻿#ifndef SAMPLEGENERATOR_H
 #define SAMPLEGENERATOR_H
 
 #include "signalgenerator.h"

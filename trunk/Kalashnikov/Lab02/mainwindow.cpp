@@ -1,4 +1,4 @@
-#include <QVBoxLayout>
+﻿#include <QVBoxLayout>
 
 #include "mainwindow.h"
 #include "signalgenerator.h"
