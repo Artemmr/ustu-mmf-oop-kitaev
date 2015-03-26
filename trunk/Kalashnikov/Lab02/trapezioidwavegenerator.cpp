@@ -86,7 +86,7 @@ SignalGenerator::Result TrapezioidWaveGenerator::SetOffset(double iOffset){ /// 
 }
 
 void TrapezioidWaveGenerator::ResetPosition(){ /// метод сброса текущего времени
-    _Pos = 0;
+//    _value = 0;
 }
 
 SignalGenerator::Result TrapezioidWaveGenerator::SetDiscretizationFrequency(int iDescrFreq){ /// метод задания частоты дискретизации сигнала

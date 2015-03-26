@@ -3,15 +3,14 @@
 
 #include <QWidget>
 
-#include "PaintOutput.h"
+class PaintOutput;
 
 class MainWindow : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-
+    explicit MainWindow(QWidget *iParent = 0);
     ~MainWindow();
 
 signals:
