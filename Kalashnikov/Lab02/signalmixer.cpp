@@ -1,8 +1,26 @@
-﻿#include "signalmixer.h"
+﻿#include <QLabel>
+#include <QDial>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
 
-SignalMixer::SignalMixer()
+#include "signalmixer.h"
+
+SignalMixer::SignalMixer(QWidget *iParent):
+    QWidget(iParent)
 {
+    _masterAmp = 1.0;
 
+    QHBoxLayout *_hblay = new QHBoxLayout (this);
+
+    QWidget *commonDialWidget;
+    _hblay->addWidget(commonDialWidget = new QWidget (this));
+    { /// здесь читерство с областью видимости
+        QWidget *parent = commonDialWidget;
+        QVBoxLayout *vlay = new QVBoxLayout (parent);
+        vlay->addWidget(new QLabel("Master", parent));
+        vlay->addWidget(_CommonDial = new QDial (this));
+    }
+    connect(_CommonDial, SIGNAL(valueChanged(int)), this, SLOT(knobValueChanged(int)));
 }
 
 double SignalMixer::GetSample(){ ///метод получения последующего сэмпла от генератора
@@ -51,4 +69,10 @@ SignalGenerator::Result SignalMixer::RemoveSignalSource(SignalGenerator *iSource
     if(!ContainsSignalSource(iSource))
         return BadValue;
     return Success;
+}
+
+void SignalMixer::knobValueChanged(int value){
+    if (QObject::sender()==_CommonDial){
+        _masterAmp = _CommonDial->value()/50.0; ///передлать, если нужно
+    }
 }

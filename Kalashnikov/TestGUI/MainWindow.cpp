@@ -22,17 +22,17 @@ MainWindow::MainWindow(QWidget *iParent):
     vblayout->addWidget(_funcPainter = new PaintOutput(parent));
 
     SignalGenerator
-            *_siggen = new SampleGenerator(),
+            *siggen = new SampleGenerator(),
             *siggen2 = new SampleGenerator();
     SignalMixer *mixer;
     vblayout->addWidget(mixer = new SignalMixer(this));
 
-    _siggen->SetAmplitude(150);
-    _siggen->SetFrequency(5);
+    siggen->SetAmplitude(150);
+    siggen->SetFrequency(5);
     siggen2->SetAmplitude(15);
     siggen2->SetFrequency(23);
 
-    mixer->AddSignalSource(_siggen);
+    mixer->AddSignalSource(siggen);
     mixer->AddSignalSource(siggen2);
 
     _funcPainter->SetGenerator(mixer);

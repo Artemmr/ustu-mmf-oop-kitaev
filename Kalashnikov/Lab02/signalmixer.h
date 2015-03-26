@@ -1,16 +1,21 @@
-#ifndef SIGNALMIXER_H
+﻿#ifndef SIGNALMIXER_H
 
 #define SIGNALMIXER_H
 
 #include <QString>
 #include <vector>
+#include <QWidget>
 
 #include "signalgenerator.h"
 
-class SignalMixer : public SignalGenerator
+class QDial;
+
+class SignalMixer : public QWidget, public SignalGenerator
 { /// Микшер
+    Q_OBJECT
 public:
-    SignalMixer();
+    explicit SignalMixer(QWidget *iParent =0);
+    /// Зачем тут virtual?
     ///public signalgenerator
     double GetSample();                                             /// метод получения последующего сэмпла от генератора
     Result SetFrequency(double /*iFrequency*/){return Success;}     /// метод задания частоты генерируемого сигнала
@@ -29,7 +34,10 @@ private:
 
     double _masterAmp;
 
+    QDial *_CommonDial;
 ///private slots:
+private slots:
+    void knobValueChanged(int value);
 
 
 };
