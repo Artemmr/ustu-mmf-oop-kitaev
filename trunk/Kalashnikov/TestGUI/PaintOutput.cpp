@@ -11,7 +11,7 @@ PaintOutput::PaintOutput(QWidget *parent) :
 void PaintOutput::paintEvent(QPaintEvent *iEvent)
 {
     QPainter painter(this);
-    painter.setPen(Qt::black);
+    painter.setPen(Qt::red);
     painter.drawLine(0, 0, 100, 100);
 
     ///Перед попыткой отрисовать функцию с генератора, проверим есть ли генератор

@@ -16,9 +16,9 @@ SignalMixer::SignalMixer(QWidget *iParent):
     _hblay->addWidget(commmonDialWidget = new QWidget(this));
     {
         QWidget *parent = commmonDialWidget;
-        QVBoxLayout *vlay = new QVBoxLayout(parent);
-        vlay->addWidget(new QLabel("Master", parent));
-        vlay->addWidget(_CommonDial = new QDial(this));
+        QVBoxLayout *vblay = new QVBoxLayout(parent);
+        vblay->addWidget(new QLabel("Master", parent));
+        vblay->addWidget(_CommonDial = new QDial(this));
     }
     connect(_CommonDial, SIGNAL(valueChanged(int)), this, SLOT(knobValueChanged(int)));
 }
