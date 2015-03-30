@@ -14,11 +14,13 @@ TEMPLATE = app
 SOURCES += main.cpp \
     noisegen.cpp \
     mainwindow.cpp \
-    risovalka.cpp
+    risovalka.cpp \
+    signalmixer.cpp
 
 HEADERS += mainwindow.h\
     signalgen.h \
     noisegen.h \
-    risovalka.h
+    risovalka.h \
+    signalmixer.h
 
 FORMS    +=
