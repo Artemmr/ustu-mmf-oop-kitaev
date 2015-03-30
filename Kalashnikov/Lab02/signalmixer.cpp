@@ -52,7 +52,7 @@ SignalGenerator::Result SignalMixer::SetDiscretizationFrequency(int iDescrFreq){
 SignalGenerator::Result SignalMixer::AddSignalSource(SignalGenerator *iSource){ /// Добавляем генератор сигнала
     if (iSource == 0) //
         return BadValue;
-    if (ContainsSignalSource(iSource))
+    if (ContainsSignalSource(iSource) == Success)
         return BadValue;
     _Source.push_back(iSource);
     return Success;
