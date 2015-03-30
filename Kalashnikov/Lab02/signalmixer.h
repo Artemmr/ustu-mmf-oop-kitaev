@@ -15,14 +15,13 @@ class SignalMixer : public QWidget, public SignalGenerator
     Q_OBJECT
 public:
     explicit SignalMixer(QWidget *iParent =0);
-    /// Зачем тут virtual?
     ///public signalgenerator
-    double GetSample();                                             /// метод получения последующего сэмпла от генератора
-    Result SetFrequency(double /*iFrequency*/){return Success;}     /// метод задания частоты генерируемого сигнала
-    void SetAmplitude(double /*iAmplitude*/){}                      /// метод задания амплитуды генерируемого сигнала
-    Result SetOffset(double /*iOffset*/){return Success;}           /// метод задания сдвига фазы относительно начала отсчёта по времени
-    void ResetPosition();                                           /// метод сброса текущего времени
-    Result SetDiscretizationFrequency(int iDescrFreq);              /// метод задания частоты дискретизации сигнала
+    virtual double GetSample();                                             /// метод получения последующего сэмпла от генератора
+    virtual Result SetFrequency(double /*iFrequency*/){return Success;}     /// метод задания частоты генерируемого сигнала
+    virtual void SetAmplitude(double /*iAmplitude*/){}                      /// метод задания амплитуды генерируемого сигнала
+    virtual Result SetOffset(double /*iOffset*/){return Success;}           /// метод задания сдвига фазы относительно начала отсчёта по времени
+    virtual void ResetPosition();                                           /// метод сброса текущего времени
+    virtual Result SetDiscretizationFrequency(int iDescrFreq);              /// метод задания частоты дискретизации сигнала
 
     ///public signalmixer
     Result AddSignalSource (SignalGenerator *iSource);              /// Добавляем генератор сигнала

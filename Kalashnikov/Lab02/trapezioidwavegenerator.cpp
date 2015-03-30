@@ -1,65 +1,64 @@
 ﻿#include "trapezioidwavegenerator.h"
 
 TrapezioidWaveGenerator::TrapezioidWaveGenerator(){
-    SetDiscretizationFrequency(1000);       /// Частота дискретизации
-    SetAmplitude(100);                      /// Амлитуда сигнала
-    SetOffset(0.0);                         /// Метод сдвига фазы
-    SetRiseTime(5);                         /// Время нарастания [c]
-    SetFallTime(6);                         /// Время спада [c]
-    SetTopPeakTime(3);                      /// Время верхнего пика [c]
-    SetBotPeakTime(2);                      /// Время нижнего пика [c]
-    SetFrequency(10);                       /// Зададим частоту
-    ResetPosition();                        /// Изначальная позиция нуль и никак иначе :)
-    _value = 0.0;                           /// Текущее положение точки на dr графика
-    _CurrentPhase = 0;                      /// изначальнно фаза в нуле
+    _DescrFreq = 1000;  /// Частота дискретизации
+    _Amplitude = 100.0;   /// Амлитуда сигнала
+    SetOffset(0.0);     /// Метод сдвига фазы
+    SetRiseTime(5);     /// Время нарастания [c]
+    SetFallTime(6);     /// Время спада [c]
+    SetTopPeakTime(3);  /// Время верхнего пика [c]
+    SetBotPeakTime(2);  /// Время нижнего пика [c]
+    _Frequency = 10;    /// Зададим частоту
+    _value = 0.0;       /// Текущее положение точки на dr графика
+    _CurrentPhase = 0;  /// изначальнно фаза в нуле
 }
 
 //public signalgenerator
 double TrapezioidWaveGenerator::GetSample(){///метод получения последующего сэмпла от генератора
 
     switch (_CurrentPhase){
-        /// Нагнетание
-        case 0:
-            _value = (-_Amplitude)*(1.0-_Pos*_InverseRiseTime)+_Amplitude*(_Pos*_InverseRiseTime);
-            _Pos += _InverseFrequency;
-            if (_Pos > _RiseTime) {
-                _CurrentPhase = 1;
-                _Pos -= _RiseTime;
-            }
-            return _value;
-            break;
+    /// Нагнетание
+    case 0:
+        _value = (-_Amplitude)*(1.0-_Pos*_InverseRiseTime)+_Amplitude*(_Pos*_InverseRiseTime);
+        _Pos += _InverseFrequency;
+        if (_Pos > _RiseTime) {
+            _CurrentPhase = 1;
+            _Pos -= _RiseTime;
+        }
+        return _value;
+        break;
         /// Верхний пик
-        case 1:
-            _value = _Amplitude;
-            _Pos += _InverseFrequency;
-            if (_Pos > _TopPeakTime) {
-                _CurrentPhase = 2;
-                _Pos -= _TopPeakTime;
-            }
-            return _value;
-            break;
+    case 1:
+        _value = _Amplitude;
+        _Pos += _InverseFrequency;
+        if (_Pos > _TopPeakTime) {
+            _CurrentPhase = 2;
+            _Pos -= _TopPeakTime;
+        }
+        return _value;
+        break;
         /// Спад
-        case 2:
-            _value = _Amplitude*(1.0-_Pos*_InverseFallTime)-_Amplitude*(_Pos*_InverseFallTime);
-            _Pos += _InverseFrequency;
-            if (_Pos > _FallTime) {
-                _CurrentPhase = 3;
-                _Pos -= _FallTime;
-            }
-            return _value;
-            break;
+    case 2:
+        _value = _Amplitude*(1.0-_Pos*_InverseFallTime)-_Amplitude*(_Pos*_InverseFallTime);
+        _Pos += _InverseFrequency;
+        if (_Pos > _FallTime) {
+            _CurrentPhase = 3;
+            _Pos -= _FallTime;
+        }
+        return _value;
+        break;
 
         /// Нижний пик
-        case 3:
-            _value = -_Amplitude;
-            _Pos += _InverseFrequency;
-            if (_Pos > _BotPeakTime) {
-                _CurrentPhase = 0;
-                _Pos -= _BotPeakTime;
-            }
-            return _value;
-            break;
-        default:
+    case 3:
+        _value = -_Amplitude;
+        _Pos += _InverseFrequency;
+        if (_Pos > _BotPeakTime) {
+            _CurrentPhase = 0;
+            _Pos -= _BotPeakTime;
+        }
+        return _value;
+        break;
+    default:
         return -1.0;
     }
 }
@@ -86,7 +85,7 @@ SignalGenerator::Result TrapezioidWaveGenerator::SetOffset(double iOffset){ /// 
 }
 
 void TrapezioidWaveGenerator::ResetPosition(){ /// метод сброса текущего времени
-//    _value = 0;
+   _value = 0;
 }
 
 SignalGenerator::Result TrapezioidWaveGenerator::SetDiscretizationFrequency(int iDescrFreq){ /// метод задания частоты дискретизации сигнала

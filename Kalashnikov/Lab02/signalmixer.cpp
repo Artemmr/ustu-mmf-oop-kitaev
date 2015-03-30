@@ -31,8 +31,8 @@ double SignalMixer::GetSample(){ ///метод получения последу
 
     double summ = 0.0;
     for(unsigned int i = 0; i < _Source.size(); ++i)
-        summ+=new_samples[i]; ///TODO необходимо добавить коэфф усиления для каждого источника
-    summ/=new_samples.size(); ///TODO Необходимо добавить коэфф усиления на выходе
+        summ+=new_samples[i];                       ///TODO необходимо добавить коэфф усиления для каждого источника
+    summ/=new_samples.size();                       ///TODO Необходимо добавить коэфф усиления на выходе
 
     return summ*_masterAmp;
 }
@@ -73,6 +73,6 @@ SignalGenerator::Result SignalMixer::RemoveSignalSource(SignalGenerator *iSource
 
 void SignalMixer::knobValueChanged(int value){
     if (QObject::sender()==_CommonDial){
-        _masterAmp = _CommonDial->value()/50.0; ///передлать, если нужно
+        _masterAmp = _CommonDial->value()/50.0; ///передлать, если нужно /// и толку? 1 делал, 50, 100, 1000
     }
 }
