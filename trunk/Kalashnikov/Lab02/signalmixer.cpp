@@ -14,7 +14,7 @@ SignalMixer::SignalMixer(QWidget *iParent):
 
     QWidget *commonDialWidget;
     _hblay->addWidget(commonDialWidget = new QWidget (this));
-    { /// здесь читерство с областью видимости
+    {
         QWidget *parent = commonDialWidget;
         QVBoxLayout *vlay = new QVBoxLayout (parent);
         vlay->addWidget(new QLabel("Master", parent));
@@ -50,7 +50,7 @@ SignalGenerator::Result SignalMixer::SetDiscretizationFrequency(int iDescrFreq){
 }
 
 SignalGenerator::Result SignalMixer::AddSignalSource(SignalGenerator *iSource){ /// Добавляем генератор сигнала
-    if (iSource == 0) //
+    if (iSource == 0)
         return BadValue;
     if (ContainsSignalSource(iSource) == Success)
         return BadValue;
@@ -71,8 +71,16 @@ SignalGenerator::Result SignalMixer::RemoveSignalSource(SignalGenerator *iSource
     return Success;
 }
 
-void SignalMixer::knobValueChanged(int value){
+void SignalMixer::knobValueChanged(){ /// убрал int value из аргумента, вроде оно вообще не работает!
     if (QObject::sender()==_CommonDial){
-        _masterAmp = _CommonDial->value()/50.0; ///передлать, если нужно /// и толку? 1 делал, 50, 100, 1000
+        _masterAmp = _CommonDial->value()/50.0;
     }
 }
+/*
+void SignalMixer::ExAddWidgets(SignalGenerator *iSource){
+    for (unsigned int i = 0; i < _Source; ++i){
+        vlay->addWidget(new QLabel("Master", parent));
+        vlay->addWidget(_ExDial[i] = new QDial (this));
+    }
+}
+*/
