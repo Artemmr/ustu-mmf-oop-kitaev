@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *iParent) :
 
     SignalMixer
             *mixer;
+
     vblayout->addWidget(mixer = new SignalMixer(this));
 
     ExTrapezioidWaveGenerator->SetAmplitude(100.0);

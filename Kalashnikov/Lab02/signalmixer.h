@@ -14,7 +14,7 @@ class SignalMixer : public QWidget, public SignalGenerator
 { /// Микшер
     Q_OBJECT
 public:
-    explicit SignalMixer(QWidget *iParent =0);
+    explicit SignalMixer(QWidget *iParent = 0);
     ///public signalgenerator
     virtual double GetSample();                                             /// метод получения последующего сэмпла от генератора
     virtual Result SetFrequency(double /*iFrequency*/){return Success;}     /// метод задания частоты генерируемого сигнала
@@ -31,12 +31,14 @@ public:
 private:
     std::vector<SignalGenerator*> _Source;                          /// коллекция входящих сигналов
 
+//    void ExAddWidgets (SignalGenerator *iSource);   /// метод создания кнопок
+
     double _masterAmp;
 
     QDial *_CommonDial;
 ///private slots:
 private slots:
-    void knobValueChanged(int value);
+    void knobValueChanged(); /// убрал int value
 
 
 };
