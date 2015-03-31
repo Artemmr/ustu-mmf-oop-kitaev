@@ -8,6 +8,8 @@
 #include <vector>
 
 class QDial;
+class QGridLayout;
+class QLabel;
 
 class SignalMixer: public QWidget, public SignalGenerator
 {
@@ -29,11 +31,25 @@ public:
     ///Возвращает true, если такой источник уже подключен
     bool ContainsSignalSource(SignalGenerator *iSource);
 
+signals:
+    void UpdateOutput();
+
 private:
+    void UpdateKnobs();
+
+    QGridLayout *_glay;
+
     ///Источники сигнала, подключенные к микшеру
     std::vector<SignalGenerator*> _sources;
+    ///Массив коэффициентов усиления для источников
+    std::vector<double> _sourcesAmps;
+
+    std::vector<QDial*> _sourceDials;
+    std::vector<QLabel*> _sourceLabels;
 
     QDial *_CommonDial;
+
+    QLabel *_CommonLabel;
 
     double _masterAmp;
 private slots:
