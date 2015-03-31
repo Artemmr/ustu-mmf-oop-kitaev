@@ -9,6 +9,7 @@
 
 #include "SampleGenerator.h"
 #include "signalmixer.h"
+#include "rclowpassfilter.h"
 
 MainWindow::MainWindow(QWidget *iParent):
     QWidget(iParent)
@@ -25,17 +26,27 @@ MainWindow::MainWindow(QWidget *iParent):
             *_siggen = new SampleGenerator(),
             *siggen2 = new SampleGenerator();
     SignalMixer *mixer;
+    RCLowPassFilter
+            *rclpfilter0 = new RCLowPassFilter(),
+            *rclpfilter1 = new RCLowPassFilter();
     vblayout->addWidget(mixer = new SignalMixer(this));
 
     _siggen->SetAmplitude(150);
     _siggen->SetFrequency(5);
     siggen2->SetAmplitude(15);
-    siggen2->SetFrequency(23);
+    siggen2->SetFrequency(150);
+
+    double rc = 1.0/(2.0*3.1415*100);
+    rclpfilter0->SetRC(rc);
+    rclpfilter1->SetRC(rc);
 
     mixer->AddSignalSource(_siggen);
     mixer->AddSignalSource(siggen2);
 
-    _funcPainter->SetGenerator(mixer);
+    rclpfilter0->SetSource(mixer);
+    rclpfilter1->SetSource(rclpfilter0);
+
+    _funcPainter->SetGenerator(rclpfilter1);
 
     //connect(bt0, SIGNAL(clicked()), this, SLOT(button0Click()));
 }
@@ -48,3 +59,4 @@ void MainWindow::button0Click()
 MainWindow::~MainWindow()
 {
 }
+

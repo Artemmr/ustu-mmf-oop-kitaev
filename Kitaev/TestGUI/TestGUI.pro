@@ -14,12 +14,14 @@ SOURCES += main.cpp\
         MainWindow.cpp \
     PaintOutput.cpp \
     SampleGenerator.cpp \
-    signalmixer.cpp
+    signalmixer.cpp \
+    rclowpassfilter.cpp
 
 HEADERS  += MainWindow.h \
     PaintOutput.h \
     signalgenerator.h \
     SampleGenerator.h \
-    signalmixer.h
+    signalmixer.h \
+    rclowpassfilter.h
 
 FORMS    +=
