@@ -48,6 +48,8 @@ MainWindow::MainWindow(QWidget *iParent):
 
     _funcPainter->SetGenerator(rclpfilter1);
 
+    connect(mixer, SIGNAL(UpdateOutput()), _funcPainter, SLOT(repaint()));
+
     //connect(bt0, SIGNAL(clicked()), this, SLOT(button0Click()));
 }
 
