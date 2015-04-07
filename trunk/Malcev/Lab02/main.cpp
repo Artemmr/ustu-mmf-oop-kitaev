@@ -1,6 +1,6 @@
-﻿#include "mainwindow.h"
-#include "signalgenerator.h"
-#include <QApplication>
+﻿#include <QApplication>
+
+#include "mainwindow.h"
 
 int main(int argc, char *argv[])
 {

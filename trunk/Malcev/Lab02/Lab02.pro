@@ -13,9 +13,13 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    ngen.cpp \
+    paintoutput.cpp
 
 HEADERS  += mainwindow.h \
-    signalgenerator.h
+    signalgenerator.h \
+    ngen.h \
+    paintoutput.h
 
-FORMS    += mainwindow.ui
+FORMS    +=
