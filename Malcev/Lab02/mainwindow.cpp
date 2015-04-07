@@ -1,14 +1,27 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
+﻿#include <QHBoxLayout>
+#include <QVBoxLayout>
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+#include "mainwindow.h"
+#include "paintoutput.h"
+#include "ngen.h"
+
+
+MainWindow::MainWindow(QWidget *iParent) :
+    QWidget(iParent)
 {
-    ui->setupUi(this);
+    QWidget *parent = this;
+    QVBoxLayout *vblyaout = new QVBoxLayout (parent);
+    vblyaout->addWidget(PGraph = new PaintOutput(parent));
+
+    SignalGenerator
+            *PNGen_1 = new NGen();
+
+    PNGen_1->SetAmplitude(150.0);
+    PNGen_1->SetFrequency(5.0);
+
+    PGraph->SetGenerator(PNGen_1);
+
 }
 
-MainWindow::~MainWindow()
-{
-    delete ui;
+MainWindow::~MainWindow(){
 }
