@@ -13,7 +13,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    paintoutput.cpp \
+    SGen.cpp
 
 HEADERS  += mainwindow.h \
-    signalgenerator.h
+    signalgenerator.h \
+    paintoutput.h \
+    SGen.h
