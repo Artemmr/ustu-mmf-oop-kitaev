@@ -5,7 +5,6 @@
 class SignalGenerator
 {
 public:
-    SignalGenerator();
     virtual double GetSample() = 0;
     virtual void ResetPosition() = 0;
     virtual void SetAmplitude(double iAmplitude) = 0;
