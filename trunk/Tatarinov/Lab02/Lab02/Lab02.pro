@@ -13,7 +13,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    trianglewavegenerator.cpp \
+    paintoutput.cpp
 
 HEADERS  += mainwindow.h \
-    signalgenerator.h
+    signalgenerator.h \
+    trianglewavegenerator.h \
+    paintoutput.h

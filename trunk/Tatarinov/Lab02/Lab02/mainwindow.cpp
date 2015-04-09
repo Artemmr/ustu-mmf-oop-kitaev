@@ -1,10 +1,25 @@
-﻿#include "mainwindow.h"
+﻿#include <QVBoxLayout>
+#include <QHBoxLayout>
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
+#include "mainwindow.h"
+#include "trianglewavegenerator.h"
+#include "paintoutput.h"
+
+MainWindow::MainWindow(QWidget *iParent)
+    : QWidget(iParent)
 {
+    QWidget *parent = this;
+    QVBoxLayout *vblyaout = new QVBoxLayout(parent);
+    vblyaout->addWidget(ExGraphic = new PaintOutput(parent));
+
+    SignalGenerator
+            *ExTrapezioidWaveGenerator = new TriangleWaveGenerator();
+
+    ExTrapezioidWaveGenerator->SetAmplitude(100.0);
+    ExTrapezioidWaveGenerator->SetFrequency(5.0);
+
+    ExGraphic->SetGenerator(ExTrapezioidWaveGenerator);
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow(){
 }
