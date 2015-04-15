@@ -15,12 +15,14 @@ SOURCES += main.cpp \
     noisegen.cpp \
     mainwindow.cpp \
     risovalka.cpp \
-    signalmixer.cpp
+    signalmixer.cpp \
+    rclowpassfilter.cpp
 
 HEADERS += mainwindow.h\
     signalgen.h \
     noisegen.h \
     risovalka.h \
-    signalmixer.h
+    signalmixer.h \
+    rclowpassfilter.h
 
 FORMS    +=

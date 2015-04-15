@@ -6,7 +6,9 @@
 
 #include "signalgen.h"
 
+class QLabel;
 class QDial;
+class QGridLayout;
 
 class SignalMixer : public QWidget, public SignalGen
 {
@@ -26,10 +28,22 @@ public:
     bool RemoveSource(SignalGen *iSource);
     //Проверка на наличие источника
     bool CheckSource(SignalGen *iSource);
+signals:
+    void UpdateOutput();
 
 private:
+    void UpdateDials();
+    //Сеть элементов
+    QGridLayout *GridLay;
+
     //Источники
     std::vector<SignalGen*> sources;
+    std::vector<double> sourcesAmps;
+
+    std::vector<QLabel*> sourcesLabels;
+    std::vector<QDial*> sourcesDials;
+
+    QLabel *masterLabel;
     QDial *masterDial;
     double masterAmp;
 private slots:

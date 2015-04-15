@@ -6,6 +6,7 @@
 #include "risovalka.h"
 #include "noisegen.h"
 #include "signalmixer.h"
+#include "rclowpassfilter.h"
 
 MainWindow::MainWindow(QWidget *iparent) :
     QWidget(iparent)
@@ -20,6 +21,7 @@ MainWindow::MainWindow(QWidget *iparent) :
         *PNoiseGen_1 = new NoiseGen(),
         *PNoiseGen_2 = new NoiseGen();
     SignalMixer *mixer;
+    RCLowPassFilter *rclpfilter = new RCLowPassFilter();
     vblayout->addWidget(mixer = new SignalMixer(this));
 
     PNoiseGen_1->SetAmplitude(150);
@@ -27,8 +29,11 @@ MainWindow::MainWindow(QWidget *iparent) :
 
     mixer->AddSource(PNoiseGen_1);
     mixer->AddSource(PNoiseGen_2);
-    PGraph->SetGenerator(mixer);
+    rclpfilter->SetSource(mixer);
 
+    PGraph->SetGenerator(rclpfilter);
+
+    connect(mixer, SIGNAL(UpdateOutput()), PGraph, SLOT(repaint()));
     //connect(BNewGraph, SIGNAL(clicked()), this, SLOT(PaintGraph()));
 }
 
