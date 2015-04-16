@@ -51,7 +51,11 @@ private:
 
     QLabel *_CommonLabel;
 
+    ///Главный коэффициент усиления
     double _masterAmp;
+
+    ///Коэффициент, используемый для приведения значения регулятора к коэффициенту усиления
+    double _DialsCoeff;
 private slots:
     ///Слот для обработки изменения положения регуляторов
     void knobValueChanged(int value);

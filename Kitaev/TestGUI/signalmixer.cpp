@@ -8,11 +8,13 @@ SignalMixer::SignalMixer(QWidget *iParent):
     QWidget(iParent)
 {
     _masterAmp = 1.0;
+    _DialsCoeff = 33.;
 
     _glay = new QGridLayout(this);
 
     _CommonLabel = new QLabel("Master", this);
     _CommonDial = new QDial(this);
+    _CommonDial->setValue(_masterAmp*_DialsCoeff);
 
     UpdateKnobs();
 
@@ -24,7 +26,7 @@ void SignalMixer::knobValueChanged(int value)
     if(QObject::sender()==_CommonDial)
     {
         ///TODO изменить значение коэфф выходного усиления
-        _masterAmp = _CommonDial->value()/50.;///TODO 50 - цифра с потолка, переделать
+        _masterAmp = _CommonDial->value()/_DialsCoeff;///TODO 50 - цифра с потолка, переделать
         emit(UpdateOutput());
         return;
     }
@@ -32,7 +34,7 @@ void SignalMixer::knobValueChanged(int value)
     {
         if(QObject::sender()==_sourceDials[i])
         {
-            _sourcesAmps[i] = _sourceDials[i]->value()/50.;
+            _sourcesAmps[i] = _sourceDials[i]->value()/_DialsCoeff;
             emit(UpdateOutput());
             return;
         }
@@ -49,7 +51,9 @@ bool SignalMixer::AddSignalSource(SignalGenerator *iSource)
     _sources.push_back(iSource);
     _sourcesAmps.push_back(1.0);
     _sourceDials.push_back(new QDial(this));
-    _sourceLabels.push_back(new QLabel(QString::number(_sourceLabels.size()),this));
+    //_sourceDials[_sourceDials.size()-]->
+    _sourceDials.back()->setValue(_sourcesAmps.back()*_DialsCoeff);
+    _sourceLabels.push_back(new QLabel(_sources.back()->GetName(),this));
     connect(_sourceDials.back(), SIGNAL(valueChanged(int)), this, SLOT(knobValueChanged(int)));
     UpdateKnobs();
     return true;
@@ -78,14 +82,14 @@ bool SignalMixer::ContainsSignalSource(SignalGenerator *iSource)
 
 void SignalMixer::UpdateKnobs()
 {
-    _glay->removeWidget(_CommonDial);
-    _glay->removeWidget(_CommonLabel);
-    for(int i = 0; i<_sourceDials.size(); ++i)
+    _glay->removeWidget(_CommonDial);///Убрали общий регулятор из менеджера размещений
+    _glay->removeWidget(_CommonLabel);///Убрали подпись общ регулятора из менеджера размещений
+    for(int i = 0; i<_sourceDials.size(); ++i)///Убираем все регуляторы каналов
         _glay->removeWidget(_sourceDials[i]);
-    for(int i = 0; i<_sourceLabels.size(); ++i)
+    for(int i = 0; i<_sourceLabels.size(); ++i)///Убираем все подписи регуляторов каналов
         _glay->removeWidget(_sourceLabels[i]);
 
-    for(int i = 0; i<_sourceLabels.size(); ++i)
+    for(int i = 0; i<_sourceLabels.size(); ++i)///Добавляем подписи всех регуляторов каналов
         _glay->addWidget(_sourceLabels[i], 0, i);
     for(int i = 0; i<_sourceDials.size(); ++i)
         _glay->addWidget(_sourceDials[i], 1, i);

@@ -16,6 +16,8 @@ public:
     virtual void ResetPosition(); // метод сброса текущего времени
     virtual void SetDiscretizationFrequency(int iDiscrFreq); // метод задания частоты дискретизации сигнала
 
+    virtual QString GetName();
+
 protected:
     double
         _amplitude,///амплитуда сигнала
@@ -25,6 +27,8 @@ protected:
         _position;///Номер текущего сэмпла
     int
         _discrFreq;///Частота дискретизации сигнала
+
+    int _number;///Порядковый номер объекта, по времени создания
 };
 
 #endif // SAMPLEGENERATOR_H
