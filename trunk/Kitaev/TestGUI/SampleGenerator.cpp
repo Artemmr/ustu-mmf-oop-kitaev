@@ -10,6 +10,9 @@ SampleGenerator::SampleGenerator()
     _amplitude = 1.0;
 
     _position = 0;///Начальный номер сэмпла - 0
+
+    static int globalSampleGeneratorNumber = 0;
+    _number = globalSampleGeneratorNumber++;
 }
 
 //метод получения последующего сэмпла от генератора
@@ -51,3 +54,9 @@ void SampleGenerator::SetDiscretizationFrequency(int iDiscrFreq)
 {
     _discrFreq = iDiscrFreq;
 }
+
+QString SampleGenerator::GetName()
+{
+    return "SampleGenerator "+QString::number(_number);
+}
+

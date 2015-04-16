@@ -15,7 +15,8 @@ SOURCES += main.cpp\
     PaintOutput.cpp \
     SampleGenerator.cpp \
     signalmixer.cpp \
-    rclowpassfilter.cpp
+    rclowpassfilter.cpp \
+    signalgenerator.cpp
 
 HEADERS  += MainWindow.h \
     PaintOutput.h \

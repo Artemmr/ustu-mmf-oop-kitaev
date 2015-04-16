@@ -23,8 +23,8 @@ MainWindow::MainWindow(QWidget *iParent):
     vblayout->addWidget(_funcPainter = new PaintOutput(parent));
 
     SignalGenerator
-            *_siggen = new SampleGenerator(),
-            *siggen2 = new SampleGenerator();
+            *siggen2 = new SampleGenerator(),
+            *_siggen = new SampleGenerator();
     SignalMixer *mixer;
     RCLowPassFilter
             *rclpfilter0 = new RCLowPassFilter(),

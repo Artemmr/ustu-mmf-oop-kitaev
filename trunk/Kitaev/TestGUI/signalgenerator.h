@@ -2,6 +2,8 @@
 
 #define SIGNALGENERATOR_H
 
+#include "QString"
+
 class SignalGenerator
 {
 public:
@@ -11,6 +13,9 @@ public:
     virtual void SetOffset(double iOffset) = 0; // метод задания сдвига фазы относительно начала отсчёта по времени
     virtual void ResetPosition() = 0; // метод сброса текущего времени
     virtual void SetDiscretizationFrequency(int iDescrFreq) = 0; // метод задания частоты дискретизации сигнала
+
+    virtual QString GetName();
+
 };
 
 #endif // SIGNALGENERATOR_H
