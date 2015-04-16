@@ -10,6 +10,7 @@
 #include "SampleGenerator.h"
 #include "signalmixer.h"
 #include "rclowpassfilter.h"
+#include "noisegen.h"
 
 MainWindow::MainWindow(QWidget *iParent):
     QWidget(iParent)
@@ -25,10 +26,12 @@ MainWindow::MainWindow(QWidget *iParent):
     SignalGenerator
             *siggen2 = new SampleGenerator(),
             *_siggen = new SampleGenerator();
+    NoiseGenerator *_ng0 = new NoiseGenerator();
     SignalMixer *mixer;
     RCLowPassFilter
             *rclpfilter0 = new RCLowPassFilter(),
-            *rclpfilter1 = new RCLowPassFilter();
+            *rclpfilter1 = new RCLowPassFilter(),
+            *rclpfilter2 = new RCLowPassFilter();
     vblayout->addWidget(mixer = new SignalMixer(this));
 
     _siggen->SetAmplitude(150);
@@ -36,17 +39,24 @@ MainWindow::MainWindow(QWidget *iParent):
     siggen2->SetAmplitude(15);
     siggen2->SetFrequency(150);
 
+    _ng0->SetAmplitude(150);
+
     double rc = 1.0/(2.0*3.1415*100);
     rclpfilter0->SetRC(rc);
     rclpfilter1->SetRC(rc);
+    rclpfilter2->SetRC(rc);
 
+    ///Подключаем источники сигналов к микшеру
     mixer->AddSignalSource(_siggen);
     mixer->AddSignalSource(siggen2);
+    mixer->AddSignalSource(_ng0);
 
     rclpfilter0->SetSource(mixer);
     rclpfilter1->SetSource(rclpfilter0);
+    rclpfilter2->SetSource(rclpfilter1);
 
-    _funcPainter->SetGenerator(rclpfilter1);
+    _funcPainter->SetGenerator(rclpfilter2);
+    //_funcPainter->SetGenerator(mixer);
 
     connect(mixer, SIGNAL(UpdateOutput()), _funcPainter, SLOT(repaint()));
 

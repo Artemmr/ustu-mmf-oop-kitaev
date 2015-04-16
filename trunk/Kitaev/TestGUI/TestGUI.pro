@@ -16,13 +16,15 @@ SOURCES += main.cpp\
     SampleGenerator.cpp \
     signalmixer.cpp \
     rclowpassfilter.cpp \
-    signalgenerator.cpp
+    signalgenerator.cpp \
+    noisegen.cpp
 
 HEADERS  += MainWindow.h \
     PaintOutput.h \
     signalgenerator.h \
     SampleGenerator.h \
     signalmixer.h \
-    rclowpassfilter.h
+    rclowpassfilter.h \
+    noisegen.h
 
 FORMS    +=
