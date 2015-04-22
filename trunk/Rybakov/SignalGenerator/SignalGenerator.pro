@@ -12,17 +12,18 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    noisegen.cpp \
     mainwindow.cpp \
     risovalka.cpp \
     signalmixer.cpp \
-    rclowpassfilter.cpp
+    rclowpassfilter.cpp \
+    signalgenerator.cpp \
+    noisegenerator.cpp
 
 HEADERS += mainwindow.h\
-    signalgen.h \
-    noisegen.h \
     risovalka.h \
     signalmixer.h \
-    rclowpassfilter.h
+    rclowpassfilter.h \
+    signalgenerator.h \
+    noisegenerator.h
 
 FORMS    +=

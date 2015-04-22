@@ -4,7 +4,7 @@
 
 #include "mainwindow.h"
 #include "risovalka.h"
-#include "noisegen.h"
+#include "noisegenerator.h"
 #include "signalmixer.h"
 #include "rclowpassfilter.h"
 
@@ -17,9 +17,9 @@ MainWindow::MainWindow(QWidget *iparent) :
     //vblayout->addWidget(BNewGraph = new QPushButton("New graph",parent));
     vblayout->addWidget(PGraph = new Risovalka(parent));
 
-    SignalGen
-        *PNoiseGen_1 = new NoiseGen(),
-        *PNoiseGen_2 = new NoiseGen();
+    SignalGenerator
+        *PNoiseGen_1 = new NoiseGenerator(),
+        *PNoiseGen_2 = new NoiseGenerator();
     SignalMixer *mixer;
     RCLowPassFilter *rclpfilter = new RCLowPassFilter();
     vblayout->addWidget(mixer = new SignalMixer(this));
