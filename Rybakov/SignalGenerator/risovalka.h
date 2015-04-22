@@ -2,7 +2,7 @@
 #define RISOVALKA_H
 
 #include <QWidget>
-#include "SignalGen.h"
+#include "signalgenerator.h"
 
 class Risovalka : public QWidget
 {
@@ -14,7 +14,7 @@ public:
         {return QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);}
     virtual QSize sizeHint() const {return QSize(1000, 500);}
 
-    void SetGenerator(SignalGen *iSignalGen){PSignalGen = iSignalGen;}
+    void SetGenerator(SignalGenerator *iSignalGen){PSignalGen = iSignalGen;}
 signals:
 
 public slots:
@@ -22,7 +22,7 @@ public slots:
 protected:
     virtual void paintEvent(QPaintEvent *iEvent);
 
-    SignalGen *PSignalGen;//указатель на экземпляр генератора сигналов
+    SignalGenerator *PSignalGen;//указатель на экземпляр генератора сигналов
 };
 
 #endif // RISOVALKA_H

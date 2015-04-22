@@ -45,16 +45,16 @@ void RCLowPassFilter::ResetPosition()
     source->ResetPosition();
 }
 
-void RCLowPassFilter::SetDiscrFrequency(int iDescrFreq)
+void RCLowPassFilter::SetDiscretizationFrequency(int iDescrFreq)
 {
     if(source==0)
         return;
     DiscrFreq = iDescrFreq;
-    source->SetDiscrFrequency(iDescrFreq);
+    source->SetDiscretizationFrequency(iDescrFreq);
     UpdateAlpha();
 }
 
-bool RCLowPassFilter::SetSource(SignalGen *iSource)
+bool RCLowPassFilter::SetSource(SignalGenerator *iSource)
 {
     if(iSource==0)
         return false;
@@ -68,7 +68,6 @@ void RCLowPassFilter::SetRC(double iRC)
     UpdateAlpha();
 }
 
-///����� ��������� �������� _alfa
 void RCLowPassFilter::UpdateAlpha()
 {
     Alpha = 1.0/(RC*DiscrFreq+1.0);
