@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
 
     int f = 1*MIN(a1==c, b==c);
     bool g = (((a1==c)<b)==c);
+    ///(a1==c)<(b==c)
 
     QApplication a(argc, argv);
     MainWindow w;
