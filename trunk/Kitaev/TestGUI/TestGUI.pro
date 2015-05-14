@@ -25,6 +25,7 @@ HEADERS  += MainWindow.h \
     SampleGenerator.h \
     signalmixer.h \
     rclowpassfilter.h \
-    noisegen.h
+    noisegen.h \
+    Common.h
 
 FORMS    +=

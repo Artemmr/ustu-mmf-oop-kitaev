@@ -2,9 +2,11 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
+#include "Common.h"
+
 SampleGenerator::SampleGenerator()
 {
-    _discrFreq = 1000;///Частота дискретизации по-умолчанию - 1000 Гц 
+    _discrFreq = DISCR_FREQ;///Частота дискретизации по-умолчанию - 1000 Гц
     _frequency = 50.0;///Частота сигнала по-умолчанию - 50 Гц
     _phaseShift = 0.0;///Сдвиг фазы по-умолчанию - 0
     _amplitude = 1.0;
@@ -20,7 +22,11 @@ double SampleGenerator::GetSample()
 {
     //double t = _position*(1.0/((double)_discrFreq));
     //double result = cos(t*_frequency*2*M_PI + _phaseShift);
+#ifdef _WIN32
     double result = _amplitude*cos(_position*_frequency*2*M_PI/((double)_discrFreq) + _phaseShift);
+#else
+    double result = _amplitude*cos(_position*_frequency*2*M_PI/((double)_discrFreq) + _phaseShift);
+#endif
     _position++;
     return result;
 }
