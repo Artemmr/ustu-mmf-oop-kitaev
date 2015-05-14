@@ -12,6 +12,10 @@
 #include "rclowpassfilter.h"
 #include "noisegen.h"
 
+#include <math.h>
+
+#include "Common.h"
+
 MainWindow::MainWindow(QWidget *iParent):
     QWidget(iParent)
 {
@@ -41,7 +45,7 @@ MainWindow::MainWindow(QWidget *iParent):
 
     _ng0->SetAmplitude(150);
 
-    double rc = 1.0/(2.0*3.1415*100);
+    double rc = 1.0/(2.0*M_PI*100);
     rclpfilter0->SetRC(rc);
     rclpfilter1->SetRC(rc);
     rclpfilter2->SetRC(rc);
