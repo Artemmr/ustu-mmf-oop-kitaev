@@ -17,11 +17,16 @@ SOURCES += main.cpp \
     trapezioidwavegenerator.cpp \
     mainwindow.cpp \
     paintoutput.cpp \
-    signalmixer.cpp
+    signalmixer.cpp \
+    rclowpassfilter.cpp \
+    noisegenerator.cpp \
+    signalgenerator.cpp
 
 HEADERS += \
     trapezioidwavegenerator.h \
     mainwindow.h \
     paintoutput.h \
     signalgenerator.h \
-    signalmixer.h
+    signalmixer.h \
+    rclowpassfilter.h \
+    noisegenerator.h

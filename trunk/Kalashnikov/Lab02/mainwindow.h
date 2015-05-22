@@ -5,17 +5,12 @@
 
 class PaintOutput;
 
-class MainWindow : public QWidget
-{
+class MainWindow : public QWidget {
     Q_OBJECT
 
 public:
     explicit MainWindow(QWidget *iParent = 0);
     ~MainWindow();
-
-signals:
-
-public slots:
 
 private:
     PaintOutput *ExGraphic;

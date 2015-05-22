@@ -1,86 +1,123 @@
 ﻿#include <QLabel>
 #include <QDial>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
+#include <QGridLayout>
 
 #include "signalmixer.h"
 
 SignalMixer::SignalMixer(QWidget *iParent):
     QWidget(iParent)
 {
-    _masterAmp = 1.0;
+    masterAmp = 1.0;
+    dialsCoeficient = 50.0;
 
-    QHBoxLayout *_hblay = new QHBoxLayout (this);
+    GridLay = new QGridLayout(this);
+    masterLabel = new QLabel ("Master", this);
+    masterDial = new QDial (this);
+    masterLabel->setAlignment(Qt::AlignCenter);
 
-    QWidget *commonDialWidget;
-    _hblay->addWidget(commonDialWidget = new QWidget (this));
-    {
-        QWidget *parent = commonDialWidget;
-        QVBoxLayout *vlay = new QVBoxLayout (parent);
-        vlay->addWidget(new QLabel("Master", parent));
-        vlay->addWidget(_CommonDial = new QDial (this));
-    }
-    connect(_CommonDial, SIGNAL(valueChanged(int)), this, SLOT(knobValueChanged(int)));
+    UpdateDials();
+    connect(masterDial,SIGNAL(valueChanged(int)),this,SLOT(DialValueChanged(int)));
 }
 
-double SignalMixer::GetSample(){ ///метод получения последующего сэмпла от генератора
-    std::vector<double> new_samples(_Source.size());
+void SignalMixer::DialValueChanged(int){
+    if (QObject::sender() == masterDial){
+        masterAmp = masterDial->value()/50.;
+        emit(UpdateOutput());
+        return;
+    }
+    for (unsigned int i = 0; i<sourcesDials.size(); ++i){
+        if (QObject::sender() == sourcesDials[i]){
+            sourcesAmps[i]=sourcesDials[i]->value()/dialsCoeficient;
+            emit(UpdateOutput());
+            return;
+        }
+    }
+}
 
-    for(unsigned int i = 0; i < _Source.size(); ++i)
-        new_samples[i] = _Source[i]->GetSample();
+void SignalMixer::UpdateDials(){
+    GridLay->removeWidget(masterLabel);
+    GridLay->removeWidget(masterDial);
 
+    for(unsigned int i = 0; i<sourcesDials.size(); ++i)
+        GridLay->removeWidget(sourcesDials[i]);
+    for(unsigned int i = 0; i<sourcesLabels.size(); ++i)
+        GridLay->removeWidget(sourcesLabels[i]);
+
+    for(unsigned int i = 0; i<sourcesLabels.size(); ++i)
+        GridLay->addWidget(sourcesLabels[i], 0, i);
+    for(unsigned int i = 0; i<sourcesDials.size(); ++i)
+        GridLay->addWidget(sourcesDials[i], 1, i);
+
+    for(unsigned int i = 0; i<sourcesDials.size(); ++i)
+        GridLay->setColumnStretch(i, 0);
+    GridLay->setColumnStretch(sourcesDials.size(), 1);
+
+    GridLay->addWidget(new QWidget(this), 0, sourcesDials.size());
+    GridLay->addWidget(new QWidget(this), 1, sourcesDials.size());
+
+    GridLay->addWidget(masterLabel, 0, sourcesDials.size()+1);
+    GridLay->addWidget(masterDial, 1, sourcesDials.size()+1);
+    GridLay->setColumnStretch(sourcesDials.size()+1, 0);
+}
+
+SignalGenerator::Result SignalMixer::AddSignalSource(SignalGenerator *iSource){
+    if(iSource == 0)
+        return BadValue;
+//    if(ContainsSignalSource(iSource))
+//        return BadValue;
+    sources.push_back(iSource);
+    sourcesAmps.push_back(1.0);
+    sourcesLabels.push_back(new QLabel(sources.back()->GetName(),this));
+    sourcesLabels.back()->setAlignment(Qt::AlignCenter);
+    sourcesDials.push_back(new QDial(this));
+    sourcesDials.back()->setValue(sourcesAmps.back()*dialsCoeficient);
+    connect(sourcesDials.back(), SIGNAL(valueChanged(int)), this, SLOT(DialValueChanged(int)));
+    UpdateDials();
+    return Success;
+}
+
+SignalGenerator::Result SignalMixer::RemoveSignalSource(SignalGenerator *iSource){
+//    if(!ContainsSignalSource(iSource))
+//        return BadValue;
+    std::vector<SignalGenerator*> new_sources;
+    std::vector<double> new_sourcesAmps;
+    std::vector<QLabel*> new_sourcesLabels;
+    std::vector<QDial*> new_sourcesDials;
+    for(unsigned int i = 0; i<sources.size(); ++i)
+        if(sources[i] != iSource)
+        {
+            new_sources.push_back(sources[i]);
+            new_sourcesAmps.push_back(sourcesAmps[i]);
+            new_sourcesLabels.push_back(sourcesLabels[i]);
+            new_sourcesDials.push_back(sourcesDials[i]);
+        }
+    sources = new_sources;
+    sourcesAmps = new_sourcesAmps;
+    sourcesLabels = new_sourcesLabels;
+    sourcesDials = new_sourcesDials;
+    UpdateDials();
+    return Success;
+}
+
+double SignalMixer::GetSample(){
+    std::vector<double> new_samples(sources.size());
+    for(unsigned int i = 0; i < sources.size(); ++i)
+        new_samples[i]=sources[i]->GetSample();
     double summ = 0.0;
-    for(unsigned int i = 0; i < _Source.size(); ++i)
-        summ+=new_samples[i];                       ///TODO необходимо добавить коэфф усиления для каждого источника
-    summ/=new_samples.size();                       ///TODO Необходимо добавить коэфф усиления на выходе
-
-    return summ*_masterAmp;
+    for(unsigned int i = 0; i <new_samples.size(); ++i)
+        summ+=new_samples[i]*sourcesAmps[i];
+    summ = summ/new_samples.size();
+    return summ*masterAmp;
 }
 
-
-void SignalMixer::ResetPosition(){ /// метод сброса текущего времени
-    for (unsigned int i = 0; i < _Source.size(); ++i)
-        _Source[i]->ResetPosition();
+void SignalMixer::ResetPosition(){
+    for(unsigned int i = 0; i < sources.size(); ++i)
+        sources[i]->ResetPosition();
 }
 
-SignalGenerator::Result SignalMixer::SetDiscretizationFrequency(int iDescrFreq){ /// метод задания частоты дискретизации сигнала
-    for (unsigned int i = 0; i < _Source.size(); ++i)
-        _Source[i]->SetDiscretizationFrequency(iDescrFreq);
+SignalMixer::Result SignalMixer::SetDiscretizationFrequency(int iDescrFreq){
+    for(unsigned int i = 0; i<sources.size(); ++i)
+        sources[i]->SetDiscretizationFrequency(iDescrFreq);
     return Success;
 }
 
-SignalGenerator::Result SignalMixer::AddSignalSource(SignalGenerator *iSource){ /// Добавляем генератор сигнала
-    if (iSource == 0)
-        return BadValue;
-    if (ContainsSignalSource(iSource) == Success)
-        return BadValue;
-    _Source.push_back(iSource);
-    return Success;
-}
-
-SignalGenerator::Result SignalMixer::ContainsSignalSource(SignalGenerator *iSource){/// Проверка на дубли
-    for (unsigned int i = 0; i < _Source.size(); ++i)
-        if (_Source[i] == iSource)
-            return Success;
-    return BadValue;
-}
-
-SignalGenerator::Result SignalMixer::RemoveSignalSource(SignalGenerator *iSource){/// Убираем генератор сигнала
-    if(!ContainsSignalSource(iSource))
-        return BadValue;
-    return Success;
-}
-
-void SignalMixer::knobValueChanged(){ /// убрал int value из аргумента, вроде оно вообще не работает!
-    if (QObject::sender()==_CommonDial){
-        _masterAmp = _CommonDial->value()/50.0;
-    }
-}
-/*
-void SignalMixer::ExAddWidgets(SignalGenerator *iSource){
-    for (unsigned int i = 0; i < _Source; ++i){
-        vlay->addWidget(new QLabel("Master", parent));
-        vlay->addWidget(_ExDial[i] = new QDial (this));
-    }
-}
-*/
