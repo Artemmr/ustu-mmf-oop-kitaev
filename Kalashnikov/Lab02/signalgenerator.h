@@ -1,6 +1,8 @@
 ﻿#ifndef SIGNALGENERATOR_H
 #define SIGNALGENERATOR_H
 
+#include "QString"
+
 class SignalGenerator
 {
 public:
@@ -16,6 +18,8 @@ public:
     virtual Result SetFrequency(double iFrequency) = 0;             /// задание частоты генерируемого сигнала
     virtual Result SetOffset(double iOffset) = 0;                   /// задание сдвига фазы относительно начала отсчёта по времени
     virtual Result SetDiscretizationFrequency(int iDescrFreq) = 0;  /// задание частоты дискретизации сигнала
+
+    virtual QString GetName();
 };
 
 #endif // SIGNALGENERATOR_H

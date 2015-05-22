@@ -2,16 +2,18 @@
 
 #define SIGNALMIXER_H
 
-#include <QString>
+//#include <QString>
 #include <vector>
 #include <QWidget>
 
 #include "signalgenerator.h"
 
 class QDial;
+class QLabel;
+class QGridLayout;
 
 class SignalMixer : public QWidget, public SignalGenerator
-{ /// Микшер
+{
     Q_OBJECT
 public:
     explicit SignalMixer(QWidget *iParent = 0);
@@ -28,17 +30,28 @@ public:
     Result ContainsSignalSource (SignalGenerator *iSource);         /// Проверка на дубли
     Result RemoveSignalSource (SignalGenerator *iSource);           /// Убираем генератор сигнала
 
+signals:
+    void UpdateOutput();
+
 private:
-    std::vector<SignalGenerator*> _Source;                          /// коллекция входящих сигналов
+    void UpdateDials();
+    //Сеть элементов
+    QGridLayout *GridLay;
 
-//    void ExAddWidgets (SignalGenerator *iSource);   /// метод создания кнопок
+    //Источники
+    std::vector<SignalGenerator*> sources;                          /// коллекция входящих сигналов
+    std::vector<double> sourcesAmps;
 
-    double _masterAmp;
+    std::vector<QLabel*> sourcesLabels;
+    std::vector<QDial*> sourcesDials;
 
-    QDial *_CommonDial;
-///private slots:
+    QLabel *masterLabel;
+    QDial *masterDial;
+    double masterAmp;
+    double dialsCoeficient;
+
 private slots:
-    void knobValueChanged(); /// убрал int value
+    void DialValueChanged(int value);
 
 
 };

@@ -4,8 +4,8 @@
 
 #include "signalgenerator.h"
 
-class TrapezioidWaveGenerator : public SignalGenerator
-{ /// трапецеидальный сигнал
+class TrapezioidWaveGenerator : public SignalGenerator {
+    /// трапецеидальный сигнал
 public:
     TrapezioidWaveGenerator();
     ///public signalgenerator
@@ -21,6 +21,8 @@ public:
     Result SetFallTime(double iFallTime);               /// Время спада
     Result SetTopPeakTime(double iTopPeakTime);         /// Время на верхнем пике
     Result SetBotPeakTime(double iBotPeakTime);         /// Время на нижнем пике
+
+    virtual QString GetName();
 
 protected:
     double
@@ -39,7 +41,8 @@ protected:
         _DescrFreq,                     /// частота дискретизации сигнала
         _Pos;                           /// Позиция в текущей фазе
     int
-        _CurrentPhase;                  /// Текущий номер фазы
+        _CurrentPhase,                  /// Текущий номер фазы
+        _Number;
 };
 
 #endif // TRAPEZIOIDWAVEGENERATOR_H

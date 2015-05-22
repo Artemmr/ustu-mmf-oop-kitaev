@@ -11,6 +11,9 @@ TrapezioidWaveGenerator::TrapezioidWaveGenerator(){
     _Frequency = 10;    /// Зададим частоту
     _value = 0.0;       /// Текущее положение точки на dr графика
     _CurrentPhase = 0;  /// изначальнно фаза в нуле
+
+    static int globalTrapezioidGeneratorNumber = 1;
+    _Number = globalTrapezioidGeneratorNumber++;
 }
 
 //public signalgenerator
@@ -131,4 +134,8 @@ SignalGenerator::Result TrapezioidWaveGenerator::SetBotPeakTime(double iBotPeakT
     }
     _BotPeakTime = iBotPeakTime;
     return Success;
+}
+
+QString TrapezioidWaveGenerator::GetName(){
+    return "Number "+QString::number(_Number);
 }

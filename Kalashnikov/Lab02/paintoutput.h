@@ -21,7 +21,7 @@ signals:
 public slots:
 
 protected:
-    virtual void paintEvent(QPaintEvent *iEvent); ///Рисовалка
+    virtual void paintEvent(QPaintEvent *iEvent); /// График
 
     SignalGenerator *ExSignalGenerator; /// указатель на экземпляр генератора сигналов
 };

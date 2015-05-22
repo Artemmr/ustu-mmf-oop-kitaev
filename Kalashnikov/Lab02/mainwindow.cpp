@@ -6,6 +6,8 @@
 #include "trapezioidwavegenerator.h"
 #include "paintoutput.h"
 #include "signalmixer.h"
+#include "rclowpassfilter.h"
+#include "noisegenerator.h"
 
 MainWindow::MainWindow(QWidget *iParent) :
     QWidget(iParent)
@@ -18,23 +20,22 @@ MainWindow::MainWindow(QWidget *iParent) :
 
     SignalGenerator
             *ExTrapezioidWaveGenerator  = new TrapezioidWaveGenerator(),
-            *ExTrapezioidWaveGenerator2 = new TrapezioidWaveGenerator();
-
-    SignalMixer
-            *mixer;
+            *PNoiseGen = new NoiseGenerator();
+    SignalMixer *mixer;
+    RCLOWPASSFILTER *rclipfilter = new RCLOWPASSFILTER();
 
     vblayout->addWidget(mixer = new SignalMixer(this));
 
     ExTrapezioidWaveGenerator->SetAmplitude(100.0);
     ExTrapezioidWaveGenerator->SetFrequency(5.0);
-    ExTrapezioidWaveGenerator2->SetFrequency(3.0);
-    ExTrapezioidWaveGenerator2->SetAmplitude(10.0);
-
-
+    PNoiseGen->SetAmplitude(150);
+    mixer->AddSignalSource(PNoiseGen);
     mixer->AddSignalSource(ExTrapezioidWaveGenerator);
-    mixer->AddSignalSource(ExTrapezioidWaveGenerator2);
+    rclipfilter->SetSource(mixer);
 
-    ExGraphic->SetGenerator(mixer);
+    ExGraphic->SetGenerator(rclipfilter);
+
+    connect(mixer, SIGNAL(UpdateOutput()), ExGraphic, SLOT(repaint()));
 }
 
 MainWindow::~MainWindow()
