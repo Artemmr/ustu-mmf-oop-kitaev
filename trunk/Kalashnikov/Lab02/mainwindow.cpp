@@ -27,8 +27,8 @@ MainWindow::MainWindow(QWidget *iParent) :
     vblayout->addWidget(mixer = new SignalMixer(this));
 
     ExTrapezioidWaveGenerator->SetAmplitude(100.0);
-    ExTrapezioidWaveGenerator->SetFrequency(5.0);
-    PNoiseGen->SetAmplitude(150);
+    ExTrapezioidWaveGenerator->SetFrequency(50.0);
+    PNoiseGen->SetAmplitude(250);
     mixer->AddSignalSource(PNoiseGen);
     mixer->AddSignalSource(ExTrapezioidWaveGenerator);
     rclipfilter->SetSource(mixer);

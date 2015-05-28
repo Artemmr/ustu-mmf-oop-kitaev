@@ -26,6 +26,7 @@ double NoiseGenerator::GetSample()
 NoiseGenerator::Result NoiseGenerator::SetFrequency(double iFrequency)
 {
     Frequency = iFrequency;
+    return Success;
 }
 
 void NoiseGenerator::SetAmplitude(double iAmplitude)
@@ -36,6 +37,8 @@ void NoiseGenerator::SetAmplitude(double iAmplitude)
 NoiseGenerator::Result NoiseGenerator::SetOffset(double iOffset)
 {
     Offset = iOffset;
+
+    return Success;
 }
 
 void NoiseGenerator::ResetPosition()
@@ -46,6 +49,7 @@ void NoiseGenerator::ResetPosition()
 NoiseGenerator::Result NoiseGenerator::SetDiscretizationFrequency(int iDescrFreq)
 {
     DiscrFreq = iDescrFreq;
+    return Success;
 }
 
 QString NoiseGenerator::GetName()
