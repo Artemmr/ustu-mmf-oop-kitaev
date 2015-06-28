@@ -15,9 +15,14 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     paintoutput.cpp \
-    SGen.cpp
+    SGen.cpp \
+    signalmixer.cpp \
+    signalgenerator.cpp \
+    rclowpassfilter.cpp
 
 HEADERS  += mainwindow.h \
     signalgenerator.h \
     paintoutput.h \
-    SGen.h
+    SGen.h \
+    signalmixer.h \
+    rclowpassfilter.h

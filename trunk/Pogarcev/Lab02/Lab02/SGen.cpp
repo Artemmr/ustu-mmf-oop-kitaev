@@ -7,6 +7,9 @@ SGen::SGen(){
     _Amplitude = 1.0;
     _PhaseShift = 0.0;
     _Pos = 0;
+
+    static int globalNoiseGeneratorNumber = 0;
+    number = globalNoiseGeneratorNumber++;
 }
 
 double SGen::GetSample(){
@@ -28,4 +31,9 @@ void SGen::ResetPosition(){
 }
 void SGen::SetDiscretizationFrequency(int iDiscrFreq){
     _DiscrFreq = iDiscrFreq;
+}
+
+QString SGen::GetName()
+{
+    return "Sine "+QString::number(number);
 }
