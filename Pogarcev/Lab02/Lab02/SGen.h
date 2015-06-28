@@ -14,6 +14,8 @@ public:
     void ResetPosition(void);
     void SetDiscretizationFrequency(int iDiscrFreq);
 
+    QString GetName();
+
 protected:
     double
         _Amplitude,
@@ -21,7 +23,8 @@ protected:
         _PhaseShift;
     int
         _Pos,
-        _DiscrFreq;
+        _DiscrFreq,
+        number;
 };
 
 #endif // SINGEN_H

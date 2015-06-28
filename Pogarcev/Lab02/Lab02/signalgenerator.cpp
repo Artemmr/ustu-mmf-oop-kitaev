@@ -1,12 +1,7 @@
-﻿#include "signalgenerator.h"
+#include "signalgenerator.h"
 
-SignalGenerator::SignalGenerator()
+QString SignalGenerator::GetName()
 {
-
-}
-
-SignalGenerator::~SignalGenerator()
-{
-
+    return "Nope";
 }
 
